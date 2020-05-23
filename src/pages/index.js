@@ -3,8 +3,8 @@ import React, { useCallback, useState } from "react"
 
 import Layout from "@/components/layout"
 import SEO from "@/components/seo"
+import History from "@/components/history-section"
 
-import Markdown from "../components/markdown"
 import Section from "../components/section"
 
 const IndexPage = ({ data: { contentfulPage: pageData } }) => {
@@ -18,12 +18,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
     <Layout toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} headerText={pageData.headerText}>
       <SEO title="художественный" />
       <Section titleId="gallery"></Section>
-      <Section titleId="history">
-        <div className="flex">
-          <div className="w-1/2"></div>
-          <Markdown className="text-ml w-1/2">{pageData.history.history}</Markdown>
-        </div>
-      </Section>
+      <History history={pageData.history} />
       <Section titleId="team"></Section>
       <Section titleId="contacts"></Section>
       <footer>footer</footer>
