@@ -52,7 +52,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: `https://pattern-exhibition.now.sh/meta.png`,
+          content: `https://movie-art-theatre.now.sh/meta.jpg`,
         },
         {
           name: `twitter:card`,
