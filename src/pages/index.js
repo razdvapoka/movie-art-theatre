@@ -4,6 +4,8 @@ import React, { useCallback, useState } from "react"
 import Layout from "@/components/layout"
 import SEO from "@/components/seo"
 import History from "@/components/history-section"
+import Team from "@/components/team-section"
+import Contacts from "@/components/contacts-section"
 
 import Section from "../components/section"
 
@@ -19,8 +21,8 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
       <SEO title="художественный" />
       <Section titleId="gallery"></Section>
       <History history={pageData.history} />
-      <Section titleId="team"></Section>
-      <Section titleId="contacts"></Section>
+      <Team team={pageData.team} />
+      <Contacts contacts={pageData.contacts} />
       <footer>footer</footer>
     </Layout>
   )
@@ -31,6 +33,16 @@ export const query = graphql`
     contentfulPage(title: { eq: "main" }, node_locale: { eq: $locale }) {
       headerText
       title
+      team {
+        id
+        name
+        role
+        image {
+          fixed(width: 360, height: 360) {
+            src
+          }
+        }
+      }
       history {
         history
       }

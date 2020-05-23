@@ -7,7 +7,7 @@ import styles from "./index.module.styl"
 
 const History = ({ history }) => (
   <Section titleId="history">
-    <div className="flex">
+    <div className="flex pb-28 mt-11">
       <div className="w-1/2"></div>
       <div className="w-1/2">
         <Markdown className="text-ml mb-15">{history.history}</Markdown>
