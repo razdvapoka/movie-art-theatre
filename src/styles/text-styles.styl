@@ -1,0 +1,103 @@
+
+cfs()
+  font-family: CoFoSans-Medium, sans-serif
+
+cfk()
+  font-family: CoFoKomsomolskayaBeta-Regular, serif
+
+.text-xxs
+  cfs()
+  font-size: pxToRem(14)
+  line-height: (16 / 14)
+
+.text-xxs-D
+  +desktop()
+    cfs()
+    font-size: pxToRem(14)
+    line-height: (16 / 14)
+
+.text-xs
+  cfs()
+  font-size: pxToRem(18)
+  line-height: (20 / 18)
+
+.text-xs-D
+  +desktop()
+    cfs()
+    font-size: pxToRem(18)
+    line-height: (20 / 18)
+
+text-s()
+  cfs()
+  font-size: pxToRem(22)
+  line-height: (34 / 22)
+
+.text-s
+  text-s()
+
+.text-s-D
+  +desktop()
+    text-s()
+
+text-m()
+  cfs()
+  font-size: pxToRem(24)
+  line-height: 1
+
+.text-m
+  text-m()
+
+.text-m-D
+  +desktop()
+    text-m()
+
+text-ml()
+  cfs()
+  font-size: pxToRem(26)
+  line-height: (32 / 26)
+
+.text-ml
+  text-ml()
+
+.text-ml-D
+  +desktop()
+    text-ml()
+
+text-mll()
+  cfk()
+  font-size: pxToRem(32)
+  line-height: (38.4 / 32)
+
+.text-mll
+  text-mll()
+
+.text-mll-D
+  +desktop()
+    text-mll()
+
+text-l()
+  cfk()
+  font-size: pxToRem(52)
+  line-height: (40.4 / 52)
+
+.text-l
+  text-l()
+
+.text-l-D
+  +desktop()
+    text-l()
+
+/*
+cfs 14 16  - xxs
+cfs 18 20 - xs
+cfs 22 34 - s
+cfk 24 24 -m
+cfs 26 32 - ml
+cfk 32 38.4 - mll
+cfk 52 40.4 - l
+cfk 52.76 79.06 -xl
+cfk 60 46 - xxl
+cfk 90 77 - xxxl
+cfk 93.8 140.56 - xxxxl
+cfk 220 330 -10 - xxxxxl
+*/
