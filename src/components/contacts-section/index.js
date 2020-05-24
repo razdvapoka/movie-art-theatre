@@ -28,7 +28,7 @@ const ConnectedMap = () => {
   return (
     <Map
       onLoad={handleMapLoad}
-      className={styles.contactsMap}
+      className={cn("w-full h-full", styles.contactsMap)}
       defaultState={{ center: [55.752418, 37.601999], zoom: 17 }}
       modules={["templateLayoutFactory", "layout.ImageWithContent"]}
     >
@@ -56,9 +56,11 @@ const Contacts = ({ contacts }) => (
     <div className="mt-11">
       <Markdown className={cn("text-center", styles.contactsText)}>{contacts.contacts}</Markdown>
       <div className="mt-18">
-        <YMaps>
-          <ConnectedMap />
-        </YMaps>
+        <div className={styles.contactsMapBox}>
+          <YMaps>
+            <ConnectedMap />
+          </YMaps>
+        </div>
       </div>
     </div>
   </Section>

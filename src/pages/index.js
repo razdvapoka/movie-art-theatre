@@ -1,12 +1,15 @@
 import { graphql } from "gatsby"
 import React, { useMemo, useCallback, useState } from "react"
 
-import Layout from "@/components/layout"
-import SEO from "@/components/seo"
-import History from "@/components/history-section"
-import Team from "@/components/team-section"
 import Contacts from "@/components/contacts-section"
 import Gallery from "@/components/gallery-section"
+import History from "@/components/history-section"
+import Layout from "@/components/layout"
+import SEO from "@/components/seo"
+import Team from "@/components/team-section"
+
+import Footer from "../components/footer"
+import Markdown from "../components/markdown"
 
 const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -43,7 +46,8 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
       />
       <Team team={pageData.team} />
       <Contacts contacts={pageData.contacts} />
-      <footer>footer</footer>
+      <Markdown className="mt-30 mb-13">{pageData.credits}</Markdown>
+      <Footer />
     </Layout>
   )
 }
