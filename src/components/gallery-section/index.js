@@ -13,7 +13,7 @@ const Gallery = ({ gallery }) => {
   const currentItem = gallery[currentIndex]
   return (
     <Section titleId="gallery">
-      <div className="flex px-4 mt-12">
+      <div className="flex px-4 mt-12 mb-22">
         <div className="w-1/8"></div>
         <div className={cn("w-3/4", styles.itemImage)}>
           <TransitionGroup className="h-full relative">
