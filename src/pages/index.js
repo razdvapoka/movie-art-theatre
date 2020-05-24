@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import React, { useCallback, useState } from "react"
+import React, { useMemo, useCallback, useState } from "react"
 
 import Layout from "@/components/layout"
 import SEO from "@/components/seo"
@@ -8,10 +8,22 @@ import Team from "@/components/team-section"
 import Contacts from "@/components/contacts-section"
 import Gallery from "@/components/gallery-section"
 
-import Section from "../components/section"
-
 const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [referenceId, setReferenceId] = useState(null)
+  const [isReferenceVisible, setIsReferenceVisible] = useState(false)
+
+  const references = useMemo(
+    () =>
+      pageData.references.reduce(
+        (refMap, ref) => ({
+          ...refMap,
+          [ref.referenceId]: ref,
+        }),
+        {}
+      ),
+    [pageData.references]
+  )
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(!isMenuOpen)
@@ -21,7 +33,14 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
     <Layout toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} headerText={pageData.headerText}>
       <SEO title="художественный" />
       <Gallery gallery={pageData.gallery} />
-      <History history={pageData.history} />
+      <History
+        referenceId={referenceId}
+        setReferenceId={setReferenceId}
+        isReferenceVisible={isReferenceVisible}
+        setIsReferenceVisible={setIsReferenceVisible}
+        history={pageData.history}
+        references={references}
+      />
       <Team team={pageData.team} />
       <Contacts contacts={pageData.contacts} />
       <footer>footer</footer>
@@ -60,6 +79,18 @@ export const query = graphql`
       }
       contacts {
         contacts
+      }
+      references {
+        title
+        text {
+          text
+        }
+        referenceId
+        image {
+          fluid(maxWidth: 260) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+        }
       }
     }
   }

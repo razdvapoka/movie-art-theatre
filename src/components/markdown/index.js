@@ -5,44 +5,40 @@ import remarkTypograph from "@mavrin/remark-typograf"
 import cn from "classnames"
 
 const isExternal = url => !url.startsWith("#")
-const renderers = {
+const renderers = ({ referenceId, setReferenceId, setIsReferenceVisible }) => ({
   link: ({ children, title, href, ...rest }) => {
     return (
       <a
-        href={title || href}
-        target={title ? "" : "_blank"}
-        rel={title ? "" : "noopener, noreferrer"}
+        href={href}
+        target={"_blank"}
+        rel={"noopener, noreferrer"}
+        onMouseEnter={() => {
+          if (title && setReferenceId && setIsReferenceVisible) {
+            setReferenceId(title)
+            setIsReferenceVisible(true)
+          }
+        }}
+        onMouseLeave={() => setIsReferenceVisible && setIsReferenceVisible(false)}
       >
         {children}
       </a>
     )
   },
-  footnoteReference: ({ identifier, ...rest }) => {
-    const [text, url] = identifier.split("|")
-    return (
-      <sup>
-        {url ? (
-          <a
-            href={url}
-            target={isExternal(url) ? "_blank" : ""}
-            rel={isExternal(url) ? "noopener noreferrer" : ""}
-          >
-            {text}
-          </a>
-        ) : (
-          text
-        )}
-      </sup>
-    )
-  },
-}
+})
 
-const Markdown = ({ children, className, ...rest }) => (
+const Markdown = ({
+  children,
+  className,
+  setReferenceId,
+  referenceId,
+  setIsReferenceVisible,
+  ...rest
+}) => (
   <ReactMarkdown
     className={cn(styles.markdown, className)}
     source={children}
     parserOptions={{ commonmark: true, footnotes: true }}
-    renderers={renderers}
+    renderers={renderers({ setReferenceId, referenceId, setIsReferenceVisible })}
     plugins={[remarkTypograph, { locale: ["en-US", "ru-RU"] }]}
     {...rest}
   />
