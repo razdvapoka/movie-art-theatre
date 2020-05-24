@@ -24,5 +24,10 @@ module.exports = {
       purple: "#5933C4",
     },
     spacing,
+    extend: {
+      width: {
+        "1/8": "12.5%",
+      },
+    },
   },
 }

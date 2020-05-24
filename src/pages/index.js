@@ -6,6 +6,7 @@ import SEO from "@/components/seo"
 import History from "@/components/history-section"
 import Team from "@/components/team-section"
 import Contacts from "@/components/contacts-section"
+import Gallery from "@/components/gallery-section"
 
 import Section from "../components/section"
 
@@ -19,7 +20,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   return (
     <Layout toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} headerText={pageData.headerText}>
       <SEO title="художественный" />
-      <Section titleId="gallery"></Section>
+      <Gallery gallery={pageData.gallery} />
       <History history={pageData.history} />
       <Team team={pageData.team} />
       <Contacts contacts={pageData.contacts} />
@@ -33,6 +34,17 @@ export const query = graphql`
     contentfulPage(title: { eq: "main" }, node_locale: { eq: $locale }) {
       headerText
       title
+      gallery {
+        title
+        description {
+          description
+        }
+        asset {
+          fluid(maxWidth: 915) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+        }
+      }
       team {
         id
         name
