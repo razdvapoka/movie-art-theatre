@@ -12,3 +12,29 @@
 .vkLogo
   width: pxToRem(16.15)
   height: pxToRem(9.22)
+
+.input::-webkit-input-placeholder
+  color: white
+  opacity: 0.5
+
+.input::-moz-placeholder
+  color: white
+  opacity: 0.5
+
+.input:-ms-input-placeholder
+  color: white
+  opacity: 0.5
+
+.input:-moz-placeholder
+  color: white
+  opacity: 0.5
+
+.input
+  border-bottom: pxToRem(2) solid rgba(255,255,255,0.5)
+  transition: border-color 0.2s ease
+  &:focus
+    border-color: white
+
+.successMessage
+  top: pxToRem(95)
+  bottom: pxToRem(95)

@@ -3,5 +3,6 @@
   "team": "team",
   "contacts": "contacts",
   "gallery": "gallery",
-  "subscribe": "subscribe to the newsletter"
+  "subscribe": "subscribe to the newsletter",
+  "success": "Thank you!<br/>You are now subscribed<br/>to the newsletter."
 }
