@@ -47,7 +47,6 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
       <Team team={pageData.team} />
       <Contacts contacts={pageData.contacts} />
       <Markdown className="mt-30 mb-13">{pageData.credits}</Markdown>
-      <Footer />
     </Layout>
   )
 }

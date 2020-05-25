@@ -56,7 +56,7 @@ const Contacts = ({ contacts }) => (
     <div className="mt-11">
       <Markdown className={cn("text-center", styles.contactsText)}>{contacts.contacts}</Markdown>
       <div className="mt-18">
-        <div className={styles.contactsMapBox}>
+        <div className={cn(styles.contactsMapBox, "bg-grey")}>
           <YMaps>
             <ConnectedMap />
           </YMaps>
