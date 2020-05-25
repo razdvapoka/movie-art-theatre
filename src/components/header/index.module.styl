@@ -1,8 +1,29 @@
+$td = 0.7s
+
 .header
-  height: pxToRem(100)
+  transition: height $td ease
   &Logo
     width: pxToRem(206)
     height: pxToRem(52)
     left: 50%
     top: 50%
     transform: translate(-50%, -50%)
+  &Content
+    height: pxToRem(100)
+
+.headerBlack
+  height: 25vh
+
+.headerOk
+  height: pxToRem(100)
+
+.overlay
+  transition: background-color $td ease
+
+.overlayOk
+  background-color: transparent
+  pointer-events: none
+
+.overlayBlack
+  transition: background-color $td ease
+  background-color: black

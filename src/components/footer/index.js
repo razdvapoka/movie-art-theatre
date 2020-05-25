@@ -17,7 +17,7 @@ const MAILCHIMP_URL =
 const MAILCHIMP_SECRET = "b_cbce4c710a25008dbbcaf1c90_3e0afba3c2"
 const EMAIL_REGEX = /.+@.+\..+/
 
-const Footer = () => {
+const Footer = ({ isIntroOn }) => {
   const intl = useIntl()
   const [email, setEmail] = useState("")
   const [isEmailValid, setIsEmailValid] = useState(false)
@@ -77,55 +77,75 @@ const Footer = () => {
   const error = status === "error"
 
   return (
-    <footer
-      className={cn(
-        "bg-purple px-8 flex justify-between items-center fixed bottom-0 left-0 w-screen",
-        styles.footer
-      )}
-    >
+    <>
       <CSSTransition in={success} classNames="fade" timeout={200} mountOnEnter unmountOnExit>
         <div
           className={cn(
-            "flex items-center justify-center bg-purple fixed left-0 w-screen text-white text-center text-xxxl-D",
+            "bg-purple fixed left-0 w-screen text-white text-center text-xxxl-D flex justify-center items-center",
             styles.successMessage
           )}
         >
           <div dangerouslySetInnerHTML={{ __html: intl.formatMessage({ id: "success" }) }} />
         </div>
       </CSSTransition>
-      <form onSubmit={handleSubmit} className={cn({ "opacity-0": success })}>
-        <div className={""}>
-          <input
-            className={cn("bg-purple text-white text-s-D uppercase", styles.input)}
-            type="text"
-            value={email}
-            placeholder="@MAIL"
-            name="EMAIL"
-            onChange={handleEmailChange}
-            disabled={success}
-          />
-          <input
-            className={cn("ml-4 text-mll-D bg-purple text-white cursor-pointer", {
-              "opacity-50 pointer-events-none": !isEmailValid,
-            })}
-            type="submit"
-            disabled={!isEmailValid || success || error}
-            value={intl.formatMessage({ id: "subscribe" })}
-          />
+      <footer
+        className={cn(
+          "bg-purple px-8 fixed bottom-0 left-0 w-screen flex items-end",
+          styles.footer,
+          isIntroOn ? styles.footerBlack : styles.footerOk
+        )}
+      >
+        <div
+          className={cn(
+            "absolute left-0 top-0 w-full h-full bg-black z-30",
+            styles.overlay,
+            isIntroOn ? styles.overlayBlack : styles.overlayOk
+          )}
+        />
+        <div className={cn(styles.footerContent, "flex items-center justify-between w-full")}>
+          <form onSubmit={handleSubmit} className={cn({ "opacity-0": success })}>
+            <div className={""}>
+              <input
+                className={cn("bg-purple text-white text-s-D uppercase", styles.input)}
+                type="text"
+                value={email}
+                placeholder="@MAIL"
+                name="EMAIL"
+                onChange={handleEmailChange}
+                disabled={success}
+              />
+              <input
+                className={cn("ml-4 text-mll-D bg-purple text-white cursor-pointer", {
+                  "opacity-50 pointer-events-none": !isEmailValid,
+                })}
+                type="submit"
+                disabled={!isEmailValid || success || error}
+                value={intl.formatMessage({ id: "subscribe" })}
+              />
+            </div>
+          </form>
+          <div className="flex items-center text-white">
+            <a className={"opacity-50 hover:opacity-100"} href="https://example.com" {...blank()}>
+              <IG className={styles.igLogo} />
+            </a>
+            <a
+              className={"ml-8 opacity-50 hover:opacity-100"}
+              href="https://example.com"
+              {...blank()}
+            >
+              <FB className={styles.fbLogo} />
+            </a>
+            <a
+              className={"ml-8 opacity-50 hover:opacity-100"}
+              href="https://example.com"
+              {...blank()}
+            >
+              <VK className={styles.vkLogo} />
+            </a>
+          </div>
         </div>
-      </form>
-      <div className="flex items-center text-white">
-        <a className={"opacity-50 hover:opacity-100"} href="https://example.com" {...blank()}>
-          <IG className={styles.igLogo} />
-        </a>
-        <a className={"ml-8 opacity-50 hover:opacity-100"} href="https://example.com" {...blank()}>
-          <FB className={styles.fbLogo} />
-        </a>
-        <a className={"ml-8 opacity-50 hover:opacity-100"} href="https://example.com" {...blank()}>
-          <VK className={styles.vkLogo} />
-        </a>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
 

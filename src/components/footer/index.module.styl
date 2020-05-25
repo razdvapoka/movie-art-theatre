@@ -1,7 +1,29 @@
+$td = 0.7s
+
 .footer
-  height: pxToRem(100)
+  transition: height $td ease
+  &Content
+    height: pxToRem(100)
   a
     transition: opacity 0.2s ease
+
+.footerBlack
+  height: 25vh
+
+.footerOk
+  height: pxToRem(100)
+
+.overlay
+  transition: background-color $td ease
+
+.overlayOk
+  background-color: transparent
+  pointer-events: none
+
+.overlayBlack
+  transition: background-color $td ease
+  background-color: black
+
 
 .igLogo
   width: pxToRem(10.83)
