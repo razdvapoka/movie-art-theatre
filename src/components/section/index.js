@@ -1,8 +1,11 @@
 import { FormattedMessage } from "gatsby-plugin-intl"
 import React from "react"
+import cn from "classnames"
+import styles from "./index.module.styl"
 
 const Section = ({ titleId, children, ...rest }) => (
-  <section className={"mt-8 px-40 "} id={titleId} {...rest}>
+  <section className={"mt-8 px-40 relative"} {...rest}>
+    <div className={cn(styles.id, "absolute")} id={titleId} />
     <div className="text-purple border-t-2 border-solid">
       <h2 className="text-center text-l-D mt-7">
         <FormattedMessage id={titleId} />
