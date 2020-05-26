@@ -1,0 +1,106 @@
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes growVert
+  from
+    transform: scale(1, 0)
+  to
+    transform: scale(1, 1)
+
+@keyframes growHor
+  from
+    transform: scale(0, 1)
+  to
+    transform: scale(1, 1)
+
+.box,
+.boxSpread
+  top: pxToRem(100)
+  bottom: pxToRem(100)
+  animation: fadeIn 2s ease forwards
+  transition: width 0.3s ease
+
+.box
+  width: 50vw
+.boxSpread
+  width: pxToRem(162)
+
+.sep
+  width: 2px
+  top: pxToRem(32)
+  bottom: pxToRem(32)
+  animation: growVert 1s ease forwards
+  &Right
+    left: -1px
+  &Left
+    right: -1px
+
+.sepH
+  height: 2px
+  border: none !important
+  animation: growHor 1s ease forwards
+
+.partnersTitle
+  max-width: pxToRem(400)
+
+.galleryImage
+  width: pxToRem(175)
+  left: 50%
+  transform: translateX(-50%)
+
+.ramblerLogo
+  left: 50%
+  transform: translateX(-50%)
+  width: pxToRem(95)
+  height: pxToRem(36)
+
+.team
+  left: 50%
+  transform: translateX(-50%)
+  &Member
+    width: pxToRem(100)
+    height: pxToRem(100)
+
+.contactsImage
+  width: pxToRem(176)
+  height: pxToRem(100)
+  left: 50%
+  transform: translateX(-50%)
+
+.galleryIconBox
+  width: pxToRem(261)
+  height: pxToRem(65)
+  &Spread
+    width: pxToRem(56)
+    height: pxToRem(20)
+    transform: translateY(4rem)
+
+.teamIconBox
+  width: pxToRem(315)
+  height: pxToRem(74)
+  &Spread
+    width: pxToRem(68)
+    height: pxToRem(20)
+    transform: translateY(4rem)
+
+.historyIconBox
+  width: pxToRem(398)
+  height: pxToRem(138)
+  &Spread
+    width: pxToRem(86)
+    height: pxToRem(40)
+    transform: translateY(-3.7rem)
+
+.contactsIconBox
+  width: pxToRem(340)
+  height: pxToRem(65)
+  &Spread
+    width: pxToRem(74)
+    height: pxToRem(20)
+    transform: translateY(-4rem)
+
+.iconBox
+  transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease

@@ -34,7 +34,13 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   }, [isMenuOpen, setIsMenuOpen])
 
   return (
-    <Layout toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} headerText={pageData.headerText}>
+    <Layout
+      toggleMenu={toggleMenu}
+      isMenuOpen={isMenuOpen}
+      headerText={pageData.headerText}
+      galleryImage={pageData.gallery[0].asset}
+      team={pageData.team}
+    >
       <SEO title="художественный" />
       <Gallery gallery={pageData.gallery} />
       <History

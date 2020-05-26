@@ -8,3 +8,8 @@ export const randomItem = arr => arr[Math.floor(Math.random() * arr.length)]
 
 export const tail = arr => arr[arr.length - 1]
 export const sum = arr => arr.reduce((s, i) => s + i, 0)
+
+export const wait = ms =>
+  new Promise(resolve => {
+    setTimeout(resolve, ms)
+  })

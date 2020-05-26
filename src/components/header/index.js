@@ -4,7 +4,7 @@ import styles from "./index.module.styl"
 import Logo from "@/icons/logo-2.inline.svg"
 import LangSwitcher from "@/components/lang-switcher"
 
-const Header = ({ text, isIntroOn }) => (
+const Header = ({ setIsSpread, text, isIntroOn }) => (
   <header
     className={cn(
       `px-4 bg-purple text-white text-xs-D uppercase
@@ -23,7 +23,7 @@ const Header = ({ text, isIntroOn }) => (
     />
     <div className={cn("flex items-center justify-between relative", styles.headerContent)}>
       <div className="opacity-50">{text}</div>
-      <Logo className={cn("absolute", styles.headerLogo)} />
+      <Logo onClick={() => setIsSpread(false)} className={cn("absolute", styles.headerLogo)} />
       <div className="opacity-50">
         <LangSwitcher />
       </div>

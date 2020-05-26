@@ -35,6 +35,7 @@ const Gallery = ({ gallery }) => {
           <ul>
             {sequence(gallery.length).map((_, index) => (
               <li
+                key={index}
                 className={cn("cursor-pointer relative", styles.itemButton, {
                   [`${styles.itemButtonActive} pointer-events-none`]: index === currentIndex,
                 })}
