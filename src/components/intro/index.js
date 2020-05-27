@@ -38,9 +38,9 @@ const Intro = ({ setIsIntroOn }) => {
     } else if (currentView === 2) {
       return <Three className="h-full" />
     } else if (currentView === 3) {
-      return <LogoBig className="h-full" />
+      return <LogoBig className="h-full w-full" />
     } else if (currentView === 4) {
-      return <Welcome className="h-full" />
+      return <Welcome className="h-full w-full" />
     }
   }, [currentView])
   useEffect(() => {

@@ -6,7 +6,7 @@ import styles from "./index.module.styl"
 const Section = ({ titleId, children, ...rest }) => (
   <section className={"mt-8 px-40 relative"} {...rest}>
     <div className={cn(styles.id, "absolute")} id={titleId} />
-    <div className="text-purple border-t-2 border-solid">
+    <div className="text-purple border-t-2 border-solid mx-8">
       <h2 className="text-center text-l-D mt-7">
         <FormattedMessage id={titleId} />
       </h2>
