@@ -16,7 +16,7 @@ module.exports = {
   purge: false,
   theme: {
     screens: {
-      sm: "640",
+      sm: "640px",
     },
     colors: {
       black: "#000",

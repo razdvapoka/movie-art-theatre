@@ -3,19 +3,28 @@ $td = 0.7s
 .header
   transition: height $td ease
   &Logo
-    width: pxToRem(206)
-    height: pxToRem(52)
+    width: pxToRem(155)
+    height: pxToRem(40)
     left: 50%
     top: 50%
     transform: translate(-50%, -50%)
+    +desktop()
+      width: pxToRem(206)
+      height: pxToRem(52)
   &Content
-    height: pxToRem(100)
+    height: pxToRem(80)
+    +desktop()
+      height: pxToRem(100)
 
 .headerBlack
-  height: 25vh
+  height: pxToRem(120)
+  +desktop()
+    height: 25vh
 
 .headerOk
-  height: pxToRem(100)
+  height: pxToRem(80)
+  +desktop()
+    height: pxToRem(100)
 
 .overlay
   transition: background-color $td ease
@@ -27,3 +36,38 @@ $td = 0.7s
 .overlayBlack
   transition: background-color $td ease
   background-color: black
+
+.burger
+  width: pxToRem(30)
+  height: pxToRem(10)
+
+.close
+  width: pxToRem(21)
+  height: pxToRem(21)
+
+.menu
+  top: pxToRem(80)
+  bottom: pxToRem(80)
+  transition: transform 0.3s ease
+  transform: translateX(100%)
+  &Open
+    transform: none
+
+.navLink
+  height: pxToRem(81)
+
+.locales
+  height: pxToRem(81)
+
+.sep
+  width: 1px
+
+.igLogo
+  width: pxToRem(10.83)
+  height: pxToRem(10.83)
+.fbLogo
+  width: pxToRem(7.22)
+  height: pxToRem(15.47)
+.vkLogo
+  width: pxToRem(16.15)
+  height: pxToRem(9.22)

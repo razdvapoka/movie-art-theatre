@@ -1,4 +1,15 @@
 .intro
-  top: 25vh
-  bottom:  25vh
+  top: pxToRem(120)
+  bottom: pxToRem(120)
+  +desktop()
+    top: 25vh
+    bottom:  25vh
+    padding: 3vh 0
+
+.logoM
+  height: (150 / 666) * 100vh
+
+.logoP
   padding: 3vh 0
+  +desktop()
+    padding: 0

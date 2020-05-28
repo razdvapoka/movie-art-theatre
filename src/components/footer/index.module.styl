@@ -3,15 +3,21 @@ $td = 0.7s
 .footer
   transition: height $td ease
   &Content
-    height: pxToRem(100)
+    height: pxToRem(80)
+    +desktop()
+      height: pxToRem(100)
   a
     transition: opacity 0.2s ease
 
 .footerBlack
-  height: 25vh
+  height: pxToRem(120)
+  +desktop()
+    height: 25vh
 
 .footerOk
-  height: pxToRem(100)
+  height: pxToRem(80)
+  +desktop()
+    height: pxToRem(100)
 
 .overlay
   transition: background-color $td ease
@@ -60,3 +66,16 @@ $td = 0.7s
 .successMessage
   top: pxToRem(95)
   bottom: pxToRem(95)
+
+.form
+  transform: translateX(100%)
+  top: pxToRem(80)
+  bottom: pxToRem(80)
+  input
+    border-radius: 0 !important
+  &Open
+    transform: none
+    transition: transform 0.3s ease
+
+.successMessageM
+  width: pxToRem(200)

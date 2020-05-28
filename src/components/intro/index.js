@@ -24,7 +24,7 @@ const Intro = ({ setIsIntroOn }) => {
           setIsIntroOn(false)
         })
       } else {
-        setCurrentView(view + 1)
+        setCurrentView(window.innerWidth < 640 && view === 2 ? 4 : view + 1)
         setTimeout(() => updateView(view + 1), 1000)
       }
     },
@@ -32,15 +32,27 @@ const Intro = ({ setIsIntroOn }) => {
   )
   const getView = useCallback(() => {
     if (currentView === 0) {
-      return <One className="h-full" />
+      return <One className={cn("h-full", styles.logoP)} />
     } else if (currentView === 1) {
-      return <Two className="h-full" />
+      return <Two className={cn("h-full", styles.logoP)} />
     } else if (currentView === 2) {
-      return <Three className="h-full" />
+      return <Three className={cn("h-full", styles.logoP)} />
     } else if (currentView === 3) {
-      return <LogoBig className="h-full w-full" />
+      return (
+        <div className="px-4 w-full">
+          <LogoBig className="h-full w-full" />
+        </div>
+      )
     } else if (currentView === 4) {
-      return <Welcome className="h-full w-full" />
+      return (
+        <>
+          <Welcome className="h-full w-full hidden sm:block" />
+          <div className="w-full h-full bg-black flex flex-col justify-between sm:hidden">
+            <LogoBig className={cn("px-4 w-full bg-white", styles.logoM)} />
+            <Welcome className={cn("px-11 w-full bg-white", styles.logoM)} />
+          </div>
+        </>
+      )
     }
   }, [currentView])
   useEffect(() => {

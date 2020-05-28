@@ -53,7 +53,7 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
     <>
       <div
         className={cn(
-          "fixed left-0 bg-white z-10 p-8",
+          "fixed left-0 bg-white z-10 p-8 hidden sm:block",
           isSpread ? styles.boxSpread : styles.box,
           styles.left
         )}
@@ -111,7 +111,7 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
       </div>
       <div
         className={cn(
-          "fixed right-0 bg-white z-10 p-8",
+          "fixed right-0 bg-white z-10 p-8 hidden sm:block",
           isSpread ? styles.boxSpread : styles.box,
           styles.right
         )}
@@ -161,6 +161,53 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           </CSSTransition>
         </div>
         <div className={cn("absolute top-0 bg-purple", styles.sep, styles.sepRight)} />
+      </div>
+      <div className={cn("sm:hidden px-4", styles.menuMobile)}>
+        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+          <div
+            className={cn(styles.iconBox, styles.iconBoxM, styles.iconGalleryM, {
+              [styles.iconBoxSpread]: isSpread,
+            })}
+          >
+            <GalleryIcon onClick={() => handleClick("gallery")} className="w-full h-full" />
+          </div>
+        </div>
+        <div className="relative">
+          <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
+        </div>
+        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+          <div
+            className={cn(styles.iconBox, styles.iconBoxM, styles.iconHistoryM, {
+              [styles.iconBoxSpread]: isSpread,
+            })}
+          >
+            <HistoryIcon onClick={() => handleClick("history")} className="w-full h-full" />
+          </div>
+        </div>
+        <div className="relative">
+          <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
+        </div>
+        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+          <div
+            className={cn(styles.iconBox, styles.iconBoxM, styles.iconTeamM, {
+              [styles.iconBoxSpread]: isSpread,
+            })}
+          >
+            <TeamIcon onClick={() => handleClick("team")} className="w-full h-full" />
+          </div>
+        </div>
+        <div className="relative">
+          <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
+        </div>
+        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+          <div
+            className={cn(styles.iconBox, styles.iconContactsM, {
+              [styles.iconBoxSpread]: isSpread,
+            })}
+          >
+            <ContactsIcon onClick={() => handleClick("contacts")} className="w-full h-full" />
+          </div>
+        </div>
       </div>
     </>
   )

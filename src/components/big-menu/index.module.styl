@@ -39,9 +39,11 @@
     right: -1px
 
 .sepH
-  height: 2px
+  height: 1px
   border: none !important
   animation: growHor 1s ease forwards
+  +desktop()
+    height: 2px
 
 .partnersTitle
   max-width: pxToRem(400)
@@ -104,3 +106,31 @@
 
 .iconBox
   transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease
+  &Spread
+    transform: scale(0.3)
+
+.menuMobile
+  margin-top: pxToRem(80)
+
+.iconGalleryM
+  width: pxToRem(167)
+  height: pxToRem(41)
+.iconHistoryM
+  width: pxToRem(254)
+  height: pxToRem(87)
+.iconTeamM
+  width: pxToRem(201)
+  height: pxToRem(47)
+.iconContactsM
+  width: pxToRem(217)
+  height: pxToRem(41)
+
+.rowM
+  height: pxToRem(126)
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: height 0.3s ease
+
+.rowMSpread
+  height: pxToRem(40)

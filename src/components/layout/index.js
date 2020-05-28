@@ -1,16 +1,18 @@
 import "@/styles/tailwind.styl"
 
+import { FixedBottom } from "react-fixed-bottom"
 import { useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
+import styles from "./index.module.styl"
+import cn from "classnames"
 
 import Header from "@/components/header"
 
 import BigMenu from "../big-menu"
+import ClientOnly from "../client-only"
 import Footer from "../footer"
 import Intro from "../intro"
-import cn from "classnames"
-import styles from "./index.module.styl"
 
 const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryImage }) => {
   const [isIntroOn, setIsIntroOn] = useState(true)
@@ -18,6 +20,22 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
   useEffect(() => {
     require("smoothscroll-polyfill").polyfill()
   }, [])
+
+  const spread = () => {
+    if (window.scrollY <= 0) {
+      setIsSpread(false)
+    } else {
+      setIsSpread(true)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", spread)
+    return () => {
+      window.removeEventListener("scroll", spread)
+    }
+  }, [spread])
+
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -46,10 +64,20 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
           setIsSpread={setIsSpread}
         />
       )}
-      <main className={cn(styles.main, "py-25", isSpread ? "opacity-100" : "opacity-0")}>
+      <main
+        className={cn(
+          styles.main,
+          "sm:py-25 max-w-screen overflow-hidden",
+          isSpread ? "opacity-100" : "opacity-0"
+        )}
+      >
         {children}
       </main>
-      <Footer isIntroOn={isIntroOn} />
+      <ClientOnly>
+        <FixedBottom>
+          <Footer isIntroOn={isIntroOn} />
+        </FixedBottom>
+      </ClientOnly>
     </div>
   )
 }

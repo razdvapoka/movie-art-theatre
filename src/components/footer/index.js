@@ -17,11 +17,52 @@ const MAILCHIMP_URL =
 const MAILCHIMP_SECRET = "b_cbce4c710a25008dbbcaf1c90_3e0afba3c2"
 const EMAIL_REGEX = /.+@.+\..+/
 
+const Form = ({
+  intl,
+  email,
+  handleEmailChange,
+  isEmailValid,
+  success,
+  error,
+  isOpen,
+  handleSubmit,
+}) => {
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={cn(
+        "bg-purple fixed left-0 w-screen flex flex-col justify-center items-center sm:hidden z-20",
+        styles.form,
+        { [styles.formOpen]: isOpen }
+      )}
+    >
+      {success ? (
+        <div
+          className={cn("text-mk uppercase text-white text-center", styles.successMessageM)}
+          dangerouslySetInnerHTML={{ __html: intl.formatMessage({ id: "success" }) }}
+        />
+      ) : (
+        <input
+          className={cn("bg-purple text-white text-m uppercase text-center", styles.input)}
+          type="text"
+          value={email}
+          placeholder="@MAIL"
+          name="EMAIL"
+          onChange={handleEmailChange}
+          disabled={success}
+        />
+      )}
+    </form>
+  )
+}
+
 const Footer = ({ isIntroOn }) => {
   const intl = useIntl()
   const [email, setEmail] = useState("")
+  const [isFormOpen, setIsFormOpen] = useState(false)
   const [isEmailValid, setIsEmailValid] = useState(false)
   const [status, setStatus] = useState(null)
+
   const handleEmailChange = useCallback(
     e => {
       setStatus(null)
@@ -32,7 +73,9 @@ const Footer = ({ isIntroOn }) => {
   )
   const handleSubmit = useCallback(
     e => {
-      e.preventDefault()
+      if (e) {
+        e.preventDefault()
+      }
       const params = toQueryString({
         EMAIL: email,
         [MAILCHIMP_SECRET]: "",
@@ -56,13 +99,26 @@ const Footer = ({ isIntroOn }) => {
     [email]
   )
 
+  const handleSubscribeClick = () => {
+    if (isFormOpen) {
+      if (isEmailValid) {
+        handleSubmit()
+      } else {
+        setIsFormOpen(false)
+      }
+    } else {
+      setIsFormOpen(true)
+    }
+  }
+
   const reset = useCallback(() => {
     if (status === "success") {
       setStatus(null)
       setEmail("")
       setIsEmailValid(false)
+      setIsFormOpen(false)
     }
-  }, [setStatus, status, setEmail, setIsEmailValid])
+  }, [setStatus, status, setEmail, setIsEmailValid, setIsFormOpen])
 
   useEffect(() => {
     window.addEventListener("scroll", reset)
@@ -78,7 +134,14 @@ const Footer = ({ isIntroOn }) => {
 
   return (
     <>
-      <CSSTransition in={success} classNames="fade" timeout={200} mountOnEnter unmountOnExit>
+      <CSSTransition
+        in={success}
+        className="hidden sm:block"
+        classNames="fade"
+        timeout={200}
+        mountOnEnter
+        unmountOnExit
+      >
         <div
           className={cn(
             "bg-purple fixed left-0 w-screen text-white text-center text-xxxl-D flex justify-center items-center z-30",
@@ -88,6 +151,15 @@ const Footer = ({ isIntroOn }) => {
           <div dangerouslySetInnerHTML={{ __html: intl.formatMessage({ id: "success" }) }} />
         </div>
       </CSSTransition>
+      <Form
+        intl={intl}
+        email={email}
+        handleEmailChange={handleEmailChange}
+        isEmailValid={isEmailValid}
+        success={success}
+        isOpen={isFormOpen}
+        handleSubmit={handleSubmit}
+      />
       <footer
         className={cn(
           "bg-purple px-8 fixed bottom-0 left-0 w-screen flex items-end",
@@ -102,8 +174,16 @@ const Footer = ({ isIntroOn }) => {
             isIntroOn ? styles.overlayBlack : styles.overlayOk
           )}
         />
-        <div className={cn(styles.footerContent, "flex items-center justify-between w-full")}>
-          <form onSubmit={handleSubmit} className={cn({ "opacity-0": success })}>
+        <div
+          className={cn(
+            styles.footerContent,
+            "flex items-center justify-center sm:justify-between w-full "
+          )}
+        >
+          <form
+            onSubmit={handleSubmit}
+            className={cn("hidden sm:block", { "opacity-0 ": success })}
+          >
             <div className={""}>
               <input
                 className={cn("bg-purple text-white text-s-D uppercase", styles.input)}
@@ -124,7 +204,7 @@ const Footer = ({ isIntroOn }) => {
               />
             </div>
           </form>
-          <div className="flex items-center text-white">
+          <div className="flex items-center text-white hidden sm:flex">
             <a className={"opacity-50 hover:opacity-100"} href="https://example.com" {...blank()}>
               <IG className={styles.igLogo} />
             </a>
@@ -143,6 +223,9 @@ const Footer = ({ isIntroOn }) => {
               <VK className={styles.vkLogo} />
             </a>
           </div>
+          <button className="sm:hidden text-mk text-white" onClick={handleSubscribeClick}>
+            {intl.formatMessage({ id: "subscribe" })}
+          </button>
         </div>
       </footer>
     </>
