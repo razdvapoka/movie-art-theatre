@@ -1,5 +1,6 @@
 import { CSSTransition } from "react-transition-group"
-import React, { useEffect, useState, useCallback } from "react"
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock"
+import React, { useRef, useEffect, useState, useCallback } from "react"
 import cn from "classnames"
 import jsonp from "jsonp"
 import toQueryString from "to-querystring"
@@ -27,8 +28,23 @@ const Form = ({
   isOpen,
   handleSubmit,
 }) => {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (el) {
+      if (isOpen && !success) {
+        disableBodyScroll(el)
+      } else {
+        enableBodyScroll(el)
+      }
+    }
+    return () => {
+      enableBodyScroll(el)
+    }
+  }, [isOpen, success, ref])
   return (
     <form
+      ref={ref}
       onSubmit={handleSubmit}
       className={cn(
         "bg-purple fixed left-0 w-screen flex flex-col justify-center items-center sm:hidden z-20",

@@ -1,5 +1,5 @@
 import Img from "gatsby-image"
-import React, { useState, useCallback } from "react"
+import React, { useState } from "react"
 
 import { sequence } from "../../utils"
 import Markdown from "../markdown"
