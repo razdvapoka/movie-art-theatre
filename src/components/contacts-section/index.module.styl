@@ -1,10 +1,14 @@
 .contacts
   &Text
-    width: pxToRem(735)
-    margin: 0 auto
+    +desktop()
+      width: pxToRem(735)
+      margin: 0 auto
   &MapBox
-    width: pxToRem(915)
-    height: pxToRem(385)
-    margin: 0 auto
+    width: 100%
+    height: pxToRem(250)
+    +desktop()
+      margin: 0 auto
+      width: pxToRem(915)
+      height: pxToRem(385)
   &Map
     filter: grayscale(100%)

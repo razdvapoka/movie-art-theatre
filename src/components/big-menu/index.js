@@ -43,10 +43,19 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
   const handleClick = section => {
     setHoveredSection(null)
     const sectionEl = document.querySelector(`#${section}`)
-    sectionEl.scrollIntoView()
-    wait(300).then(() => {
+    if (window.innerWidth > 640) {
+      sectionEl.scrollIntoView()
+      wait(300).then(() => {
+        setIsSpread(true)
+      })
+    } else {
       setIsSpread(true)
-    })
+      wait(300).then(() => {
+        sectionEl.scrollIntoView({
+          behavior: "smooth",
+        })
+      })
+    }
   }
 
   return (

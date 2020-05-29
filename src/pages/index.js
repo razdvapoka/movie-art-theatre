@@ -50,7 +50,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
         references={references}
       />
       <Team team={pageData.team} />
-      <Contacts contacts={pageData.contacts} />
+      <Contacts contacts={pageData.contacts} contactsMobile={pageData.contactsMobile} />
       <Markdown className="mt-30 mb-13">{pageData.credits}</Markdown>
     </Layout>
   )
@@ -87,6 +87,9 @@ export const query = graphql`
       }
       contacts {
         contacts
+      }
+      contactsMobile {
+        contactsMobile
       }
       references {
         title

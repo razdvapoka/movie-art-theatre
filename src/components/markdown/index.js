@@ -1,14 +1,25 @@
 import React from "react"
 import ReactMarkdown from "react-markdown"
-import styles from "./index.module.styl"
-import remarkTypograph from "@mavrin/remark-typograf"
 import cn from "classnames"
+import remarkTypograph from "@mavrin/remark-typograf"
+
+import { blank } from "../../utils"
+import styles from "./index.module.styl"
 
 //const isExternal = url => !url.startsWith("#")
 const renderers = ({ referenceId, setReferenceId, setIsReferenceVisible }) => ({
   link: ({ children, title, href, ...rest }) => {
+    const isButton = !!title
+    const Component = isButton ? "button" : "a"
+    const props = isButton
+      ? {}
+      : {
+          href,
+          ...blank(),
+        }
     return (
-      <button
+      <Component
+        {...props}
         onClick={() => {
           if (title && setReferenceId && setIsReferenceVisible) {
             setReferenceId(title)
@@ -24,7 +35,7 @@ const renderers = ({ referenceId, setReferenceId, setIsReferenceVisible }) => ({
         onMouseLeave={() => setIsReferenceVisible && setIsReferenceVisible(false)}
       >
         {children}
-      </button>
+      </Component>
     )
   },
 })

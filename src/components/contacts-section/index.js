@@ -51,11 +51,18 @@ const ConnectedMap = () => {
   )
 }
 
-const Contacts = ({ contacts }) => (
+const Contacts = ({ contacts, contactsMobile }) => (
   <Section titleId="contacts">
     <div className="mt-11">
-      <Markdown className={cn("text-center", styles.contactsText)}>{contacts.contacts}</Markdown>
-      <div className="mt-18">
+      <Markdown
+        className={cn("hidden sm:block text-center text-xs text-ml-D", styles.contactsText)}
+      >
+        {contacts.contacts}
+      </Markdown>
+      <Markdown className={cn("sm:hidden text-center text-xs text-ml-D", styles.contactsText)}>
+        {contactsMobile.contactsMobile}
+      </Markdown>
+      <div className="mt-8 sm:mt-18">
         <div className={cn(styles.contactsMapBox, "bg-grey")}>
           <YMaps>
             <ConnectedMap />

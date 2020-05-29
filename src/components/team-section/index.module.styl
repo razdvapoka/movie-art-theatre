@@ -1,7 +1,19 @@
 .teamMember
-  width: pxToRem(280)
+  width: pxToRem(200)
+  +desktop()
+    width: pxToRem(280)
   &Image
-    width: pxToRem(180)
-    height: pxToRem(180)
+    width: pxToRem(140)
+    height: pxToRem(140)
+    +desktop()
+      width: pxToRem(180)
+      height: pxToRem(180)
   &Sep
-    width: pxToRem(55)
+    width: pxToRem(40)
+    +desktop()
+      width: pxToRem(55)
+
+.teamMember + .teamMember
+  margin-top: pxToRem(32)
+  +desktop()
+    margin-top: 0
