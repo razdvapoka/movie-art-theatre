@@ -1,18 +1,33 @@
 .item
   &Image
-    height: pxToRem(515)
+    height: pxToRem(250)
+    +desktop()
+      height: pxToRem(515)
   &Button::after
     content: ""
     display: block
     position: absolute
-    left: 50%
-    transform: translateX(-50%)
-    bottom: pxToRem(-7)
-    width: pxToRem(11)
-    height: pxToRem(2)
     background-color: black
-    transition: width 0.3s ease
+    transition: width 0.3s ease, height 0.3s ease
+    right: pxToRem(-8)
+    top: 50%
+    transform: translateY(-50%)
+    height: pxToRem(12)
+    width: pxToRem(2)
+    +desktop()
+      top: auto
+      right: auto
+      left: 50%
+      transform: translateX(-50%)
+      bottom: pxToRem(-7)
+      width: pxToRem(11)
+      height: pxToRem(2)
   &ButtonActive::after
-    width: pxToRem(40)
+    height: pxToRem(28)
+    +desktop()
+      height: pxToRem(2)
+      width: pxToRem(40)
   &Button + &Button
-    margin-top: pxToRem(12.5)
+    margin-left: pxToRem(15)
+    +desktop()
+      margin-top: pxToRem(12.5)
