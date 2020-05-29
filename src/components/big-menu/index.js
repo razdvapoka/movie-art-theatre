@@ -17,7 +17,7 @@ const Team = ({ items }) => {
     <div className={cn(styles.team, "absolute top-0 flex")}>
       {items.map((item, itemIndex) => (
         <div className={cn(styles.teamMember, `team-member-${itemIndex}`)} key={itemIndex}>
-          <Img className="w-full h-full" fixed={item.image.fixed} />
+          <Img className="w-full h-full rounded-full" fixed={item.image.fixed} />
         </div>
       ))}
     </div>
