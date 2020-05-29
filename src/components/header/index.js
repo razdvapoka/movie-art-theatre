@@ -54,18 +54,17 @@ const Menu = ({ intl, setIsMenuOpen }) => {
         <IntlContextConsumer>
           {({ languages, language: currentLocale }) =>
             languages.map((language, languageIndex) => (
-              <>
+              <React.Fragment key={language}>
                 <button
                   className={cn("uppercase w-1/2 h-full", {
                     "opacity-50 pointer-events-none": currentLocale === language,
                   })}
-                  key={language}
                   onClick={() => changeLocale(language)}
                 >
                   {language}
                 </button>
                 {languageIndex === 0 && <div className={cn(styles.sep, "bg-white h-full")} />}
-              </>
+              </React.Fragment>
             ))
           }
         </IntlContextConsumer>

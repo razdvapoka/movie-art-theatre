@@ -1,6 +1,11 @@
 .ramblerLogo
-  width: pxToRem(236)
-  height: pxToRem(89)
+  width: pxToRem(133)
+  height: pxToRem(50)
+  margin: 0 auto
+  +desktop()
+    width: pxToRem(236)
+    height: pxToRem(89)
+    margin: 0
 
 .referenceColumn
   width: pxToRem(260)
@@ -11,4 +16,13 @@
   transform: translate(-50%, -50%)
 
 .referenceImage
-  width: pxToRem(260)
+  +desktop()
+    width: pxToRem(260)
+
+.referenceModal
+  top: pxToRem(80)
+  bottom: pxToRem(80)
+  &Close
+    width: pxToRem(21)
+    height: pxToRem(21)
+    margin:0 auto

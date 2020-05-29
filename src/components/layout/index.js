@@ -15,26 +15,25 @@ import Footer from "../footer"
 import Intro from "../intro"
 
 const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryImage }) => {
-  const [isIntroOn, setIsIntroOn] = useState(true)
+  const [isIntroOn, setIsIntroOn] = useState(false)
   const [isSpread, setIsSpread] = useState(false)
   useEffect(() => {
     require("smoothscroll-polyfill").polyfill()
   }, [])
 
-  const spread = () => {
-    if (window.scrollY <= 0) {
-      setIsSpread(false)
-    } else {
-      setIsSpread(true)
-    }
-  }
-
   useEffect(() => {
+    const spread = () => {
+      if (window.scrollY <= 0) {
+        setIsSpread(false)
+      } else {
+        setIsSpread(true)
+      }
+    }
     window.addEventListener("scroll", spread)
     return () => {
       window.removeEventListener("scroll", spread)
     }
-  }, [spread])
+  }, [setIsSpread])
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {

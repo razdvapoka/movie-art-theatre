@@ -28,7 +28,7 @@ const Intro = ({ setIsIntroOn }) => {
         setTimeout(() => updateView(view + 1), 1000)
       }
     },
-    [setCurrentView]
+    [setCurrentView, setIsIntroOn]
   )
   const getView = useCallback(() => {
     if (currentView === 0) {
@@ -57,7 +57,7 @@ const Intro = ({ setIsIntroOn }) => {
   }, [currentView])
   useEffect(() => {
     updateView()
-  }, [])
+  }, [updateView])
   return (
     <div className={cn("fixed bg-white left-0 w-screen text-center z-50", styles.intro)}>
       <div className="h-full flex justify-center">{getView()}</div>

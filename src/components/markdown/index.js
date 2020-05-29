@@ -4,14 +4,17 @@ import styles from "./index.module.styl"
 import remarkTypograph from "@mavrin/remark-typograf"
 import cn from "classnames"
 
-const isExternal = url => !url.startsWith("#")
+//const isExternal = url => !url.startsWith("#")
 const renderers = ({ referenceId, setReferenceId, setIsReferenceVisible }) => ({
   link: ({ children, title, href, ...rest }) => {
     return (
-      <a
-        href={href}
-        target={"_blank"}
-        rel={"noopener, noreferrer"}
+      <button
+        onClick={() => {
+          if (title && setReferenceId && setIsReferenceVisible) {
+            setReferenceId(title)
+            setIsReferenceVisible(true)
+          }
+        }}
         onMouseEnter={() => {
           if (title && setReferenceId && setIsReferenceVisible) {
             setReferenceId(title)
@@ -21,7 +24,7 @@ const renderers = ({ referenceId, setReferenceId, setIsReferenceVisible }) => ({
         onMouseLeave={() => setIsReferenceVisible && setIsReferenceVisible(false)}
       >
         {children}
-      </a>
+      </button>
     )
   },
 })

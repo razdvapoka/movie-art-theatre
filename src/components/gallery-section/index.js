@@ -39,7 +39,7 @@ const Gallery = ({ gallery }) => {
         <div
           className={`
             sm:w-1/8
-            flex flex-row-reverse items-start sm:flex-col justify-between
+            flex flex-row-reverse items-start sm:items-center sm:flex-col justify-between
             sm:pl-4
             text-center text-xs text-xxs-D
             mt-4 sm:mt-0

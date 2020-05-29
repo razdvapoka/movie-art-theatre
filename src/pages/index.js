@@ -8,8 +8,6 @@ import Layout from "@/components/layout"
 import SEO from "@/components/seo"
 import Team from "@/components/team-section"
 
-import Footer from "../components/footer"
-import Intro from "../components/intro"
 import Markdown from "../components/markdown"
 
 const IndexPage = ({ data: { contentfulPage: pageData } }) => {
