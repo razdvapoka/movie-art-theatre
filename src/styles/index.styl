@@ -48,3 +48,51 @@ body
   opacity: 0
   transition: opacity 200ms ease-in
 
+.team-member-0
+  z-index: 10
+.team-member-1
+  z-index: 9
+.team-member-2
+  z-index: 8
+
+.team-enter
+  opacity: 0
+  .team-member-0
+    transform: translateX(33%)
+  .team-member-2
+    transform: translateX(-33%)
+
+.team-enter-active
+  opacity: 1
+  transition: opacity 200ms ease-in
+  .team-member-0
+    transition: transform 200ms ease 200ms
+    transform: translateX(13%)
+  .team-member-2
+    transition: transform 200ms ease 200ms
+    transform: translateX(-13%)
+
+.team-enter-done
+  opacity: 1
+  .team-member-0
+    transform: translateX(13%)
+  .team-member-2
+    transform: translateX(-13%)
+
+.team-exit
+  opacity: 1
+  .team-member-0
+    transform: translateX(13%)
+  .team-member-2
+    transform: translateX(-13%)
+
+.team-exit-active
+  opacity: 0
+  transition: opacity 200ms ease-in
+  .team-member-0
+    transform: translateX(33%)
+    transition: transform 200ms ease
+  .team-member-2
+    transform: translateX(-33%)
+    transition: transform 200ms ease
+

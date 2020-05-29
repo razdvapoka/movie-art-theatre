@@ -16,7 +16,7 @@ const Team = ({ items }) => {
   return (
     <div className={cn(styles.team, "absolute top-0 flex")}>
       {items.map((item, itemIndex) => (
-        <div className={styles.teamMember} key={itemIndex}>
+        <div className={cn(styles.teamMember, `team-member-${itemIndex}`)} key={itemIndex}>
           <Img className="w-full h-full" fixed={item.image.fixed} />
         </div>
       ))}
@@ -135,8 +135,8 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           </div>
           <CSSTransition
             in={hoveredSection === "team"}
-            classNames="fade"
-            timeout={200}
+            classNames="team"
+            timeout={400}
             mountOnEnter
             unmountOnExit
           >
