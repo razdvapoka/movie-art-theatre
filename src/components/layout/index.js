@@ -65,9 +65,9 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
       )}
       <main
         className={cn(
-          styles.main,
-          "sm:py-25 max-w-screen overflow-hidden",
-          isSpread ? "opacity-100" : "opacity-0"
+          isSpread ? styles.mainSpread : styles.main,
+          isSpread ? "opacity-100" : "opacity-0",
+          "sm:py-25 max-w-screen overflow-hidden"
         )}
       >
         {children}

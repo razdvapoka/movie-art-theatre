@@ -202,7 +202,9 @@ const Footer = ({ isIntroOn }) => {
           >
             <div className={""}>
               <input
-                className={cn("bg-purple text-white text-s-D uppercase", styles.input)}
+                className={cn("bg-purple text-white text-s-D uppercase", styles.input, {
+                  [styles.inputNonEmpty]: email.length > 0,
+                })}
                 type="text"
                 value={email}
                 placeholder="@MAIL"

@@ -62,6 +62,10 @@ $td = 0.7s
   transition: border-color 0.2s ease
   &:focus
     border-color: white
+  &NonEmpty
+    border-color: white
+  +desktop()
+    width: pxToRem(590)
 
 .successMessage
   top: pxToRem(95)

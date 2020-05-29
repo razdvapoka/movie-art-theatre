@@ -62,7 +62,7 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
     <>
       <div
         className={cn(
-          "fixed left-0 bg-white z-10 p-8 hidden sm:block",
+          "fixed left-0 z-10 p-8 hidden sm:block",
           isSpread ? styles.boxSpread : styles.box,
           styles.left
         )}
@@ -120,7 +120,7 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
       </div>
       <div
         className={cn(
-          "fixed right-0 bg-white z-10 p-8 hidden sm:block",
+          "fixed right-0 z-10 p-8 hidden sm:block",
           isSpread ? styles.boxSpread : styles.box,
           styles.right
         )}

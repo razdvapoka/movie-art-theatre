@@ -13,7 +13,7 @@ const ReferenceModal = ({ reference, setReferenceId, setIsReferenceVisible }) =>
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
-    if (el) {
+    if (el && window.innerWidth <= 640) {
       disableBodyScroll(el)
     }
     return () => {

@@ -21,6 +21,12 @@
   top: pxToRem(100)
   bottom: pxToRem(100)
   animation: fadeIn 2s ease forwards
+
+.box
+  transition: width 0.3s ease 0.3s
+  //transition: width 0.3s ease
+
+.boxSpread
   transition: width 0.3s ease
 
 .box
@@ -105,9 +111,12 @@
     transform: translateY(-12vh)
 
 .iconBox
+  //transition: width 0.3s ease 0.3s, height 0.3s ease 0.3s, transform 0.3s ease 0.3s
   transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease
-  &Spread
-    transform: scale(0.3)
+
+.iconBoxSpread
+  transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease
+  transform: scale(0.3)
 
 .menuMobile
   margin-top: pxToRem(80)
