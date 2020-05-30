@@ -10,6 +10,10 @@ import TeamIcon from "@/icons/team.inline.svg"
 import GalleryIcon from "@/icons/gallery.inline.svg"
 import ContactsIcon from "@/icons/contacts.inline.svg"
 import HistoryIcon from "@/icons/history.inline.svg"
+import TeamIconEn from "@/icons/team-en.inline.svg"
+import GalleryIconEn from "@/icons/gallery-en.inline.svg"
+import ContactsIconEn from "@/icons/contacts-en.inline.svg"
+import HistoryIconEn from "@/icons/history-en.inline.svg"
 import { wait } from "@/utils"
 
 const Team = ({ items }) => {
@@ -58,6 +62,26 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
     }
   }
 
+  const TeamIconComponent = intl.locale === "en" ? TeamIconEn : TeamIcon
+  const teamIconClassName = intl.locale === "en" ? styles.teamIconBoxEn : styles.teamIconBox
+  const teamIconClassNameSpread =
+    intl.locale === "en" ? styles.teamIconBoxEnSpread : styles.teamIconBoxSpread
+  const GalleryIconComponent = intl.locale === "en" ? GalleryIconEn : GalleryIcon
+  const galleryIconClassName =
+    intl.locale === "en" ? styles.galleryIconBoxEn : styles.galleryIconBox
+  const galleryIconClassNameSpread =
+    intl.locale === "en" ? styles.galleryIconBoxEnSpread : styles.galleryIconBoxSpread
+  const HistoryIconComponent = intl.locale === "en" ? HistoryIconEn : HistoryIcon
+  const historyIconClassName =
+    intl.locale === "en" ? styles.historyIconBoxEn : styles.historyIconBox
+  const historyIconClassNameSpread =
+    intl.locale === "en" ? styles.historyIconBoxEnSpread : styles.historyIconBoxSpread
+  const ContactsIconComponent = intl.locale === "en" ? ContactsIconEn : ContactsIcon
+  const contactsIconClassName =
+    intl.locale === "en" ? styles.contactsIconBoxEn : styles.contactsIconBox
+  const contactsIconClassNameSpread =
+    intl.locale === "en" ? styles.contactsIconBoxEnSpread : styles.contactsIconBoxSpread
+
   return (
     <>
       <div
@@ -71,12 +95,15 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           <div
             className={cn(
               styles.iconBox,
-              isSpread ? styles.galleryIconBoxSpread : styles.galleryIconBox
+              isSpread ? galleryIconClassNameSpread : galleryIconClassName
             )}
             onMouseEnter={() => !isSpread && setHoveredSection("gallery")}
             onMouseLeave={() => setHoveredSection(null)}
           >
-            <GalleryIcon onClick={() => handleClick("gallery")} className="w-full h-full" />
+            <GalleryIconComponent
+              onClick={() => handleClick("gallery")}
+              className="w-full h-full"
+            />
           </div>
           <CSSTransition
             in={hoveredSection === "gallery"}
@@ -97,12 +124,15 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           <div
             className={cn(
               styles.iconBox,
-              isSpread ? styles.historyIconBoxSpread : styles.historyIconBox
+              isSpread ? historyIconClassNameSpread : historyIconClassName
             )}
             onMouseEnter={() => !isSpread && setHoveredSection("history")}
             onMouseLeave={() => setHoveredSection(null)}
           >
-            <HistoryIcon onClick={() => handleClick("history")} className="w-full h-full" />
+            <HistoryIconComponent
+              onClick={() => handleClick("history")}
+              className="w-full h-full"
+            />
           </div>
           <CSSTransition
             in={hoveredSection === "history"}
@@ -127,11 +157,11 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
       >
         <div className="h-1/2 relative flex justify-center items-center">
           <div
-            className={cn(styles.iconBox, isSpread ? styles.teamIconBoxSpread : styles.teamIconBox)}
+            className={cn(styles.iconBox, isSpread ? teamIconClassNameSpread : teamIconClassName)}
             onMouseEnter={() => !isSpread && setHoveredSection("team")}
             onMouseLeave={() => setHoveredSection(null)}
           >
-            <TeamIcon onClick={() => handleClick("team")} className="w-full h-full" />
+            <TeamIconComponent onClick={() => handleClick("team")} className="w-full h-full" />
           </div>
           <CSSTransition
             in={hoveredSection === "team"}
@@ -150,12 +180,15 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           <div
             className={cn(
               styles.iconBox,
-              isSpread ? styles.contactsIconBoxSpread : styles.contactsIconBox
+              isSpread ? contactsIconClassNameSpread : contactsIconClassName
             )}
             onMouseEnter={() => !isSpread && setHoveredSection("contacts")}
             onMouseLeave={() => setHoveredSection(null)}
           >
-            <ContactsIcon onClick={() => handleClick("contacts")} className="w-full h-full" />
+            <ContactsIconComponent
+              onClick={() => handleClick("contacts")}
+              className="w-full h-full"
+            />
           </div>
           <CSSTransition
             in={hoveredSection === "contacts"}

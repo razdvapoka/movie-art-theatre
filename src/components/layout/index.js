@@ -15,7 +15,7 @@ import Footer from "../footer"
 import Intro from "../intro"
 
 const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryImage }) => {
-  const [isIntroOn, setIsIntroOn] = useState(true)
+  const [isIntroOn, setIsIntroOn] = useState(false)
   const [isSpread, setIsSpread] = useState(false)
   useEffect(() => {
     require("smoothscroll-polyfill").polyfill()
