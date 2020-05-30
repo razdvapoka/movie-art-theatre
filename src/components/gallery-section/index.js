@@ -48,7 +48,7 @@ const Gallery = ({ gallery }) => {
           <div className="relative w-1/2 sm:w-full">
             <TransitionGroup>
               <CSSTransition key={currentIndex} timeout={300} classNames="item">
-                <Markdown>{currentItem.description.description}</Markdown>
+                <Markdown className="text-xxs-D">{currentItem.description.description}</Markdown>
               </CSSTransition>
             </TransitionGroup>
           </div>
@@ -56,7 +56,7 @@ const Gallery = ({ gallery }) => {
             {sequence(gallery.length).map((_, index) => (
               <li
                 key={index}
-                className={cn("cursor-pointer relative", styles.itemButton, {
+                className={cn("cursor-pointer relative text-xxs-D", styles.itemButton, {
                   [`${styles.itemButtonActive} pointer-events-none`]: index === currentIndex,
                 })}
                 onClick={() => setCurrentIndex(index)}
