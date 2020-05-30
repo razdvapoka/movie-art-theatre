@@ -270,9 +270,14 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           style={{ height: isSpread ? `calc(${rowHeight} / 3)` : `calc(${rowHeight})` }}
         >
           <div
-            className={cn(styles.iconBox, styles.iconBoxM, styles.iconTeamM, {
-              [styles.iconBoxSpread]: isSpread,
-            })}
+            className={cn(
+              styles.iconBox,
+              styles.iconBoxM,
+              intl.locale === "en" ? styles.iconTeamMEn : styles.iconTeamM,
+              {
+                [styles.iconBoxSpread]: isSpread,
+              }
+            )}
           >
             <TeamIconComponent onClick={() => handleClick("team")} className="w-full h-full" />
           </div>
