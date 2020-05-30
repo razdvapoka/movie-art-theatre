@@ -211,7 +211,10 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
               [styles.iconBoxSpread]: isSpread,
             })}
           >
-            <GalleryIcon onClick={() => handleClick("gallery")} className="w-full h-full" />
+            <GalleryIconComponent
+              onClick={() => handleClick("gallery")}
+              className="w-full h-full"
+            />
           </div>
         </div>
         <div className="relative">
@@ -219,11 +222,19 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
         </div>
         <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
           <div
-            className={cn(styles.iconBox, styles.iconBoxM, styles.iconHistoryM, {
-              [styles.iconBoxSpread]: isSpread,
-            })}
+            className={cn(
+              styles.iconBox,
+              styles.iconBoxM,
+              intl.locale === "en" ? styles.iconHistoryMEn : styles.iconHistoryM,
+              {
+                [styles.iconBoxSpread]: isSpread,
+              }
+            )}
           >
-            <HistoryIcon onClick={() => handleClick("history")} className="w-full h-full" />
+            <HistoryIconComponent
+              onClick={() => handleClick("history")}
+              className="w-full h-full"
+            />
           </div>
         </div>
         <div className="relative">
@@ -235,7 +246,7 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
               [styles.iconBoxSpread]: isSpread,
             })}
           >
-            <TeamIcon onClick={() => handleClick("team")} className="w-full h-full" />
+            <TeamIconComponent onClick={() => handleClick("team")} className="w-full h-full" />
           </div>
         </div>
         <div className="relative">
@@ -247,7 +258,7 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
               [styles.iconBoxSpread]: isSpread,
             })}
           >
-            <ContactsIcon onClick={() => handleClick("contacts")} className="w-full h-full" />
+            <ContactsIconComponent onClick={() => handleClick("contacts")} className="h-full" />
           </div>
         </div>
       </div>

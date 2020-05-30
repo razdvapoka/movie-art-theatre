@@ -4,9 +4,11 @@ import Two from "@/icons/two.inline.svg"
 import Three from "@/icons/three.inline.svg"
 import LogoBig from "@/icons/logo-big.inline.svg"
 import Welcome from "@/icons/welcome.inline.svg"
+import WelcomeEn from "@/icons/welcome-en.inline.svg"
 import styles from "./index.module.styl"
 import cn from "classnames"
 import FontFaceObserver from "fontfaceobserver"
+import { useIntl } from "gatsby-plugin-intl"
 
 const wait = ms =>
   new Promise(resolve => {
@@ -14,6 +16,9 @@ const wait = ms =>
   })
 
 const Intro = ({ setIsIntroOn }) => {
+  const intl = useIntl()
+  const WelcomeComponent = intl.locale === "en" ? WelcomeEn : Welcome
+
   const [currentView, setCurrentView] = useState(0)
   const updateView = useCallback(
     (view = -1) => {
@@ -46,10 +51,10 @@ const Intro = ({ setIsIntroOn }) => {
     } else if (currentView === 4) {
       return (
         <>
-          <Welcome className="h-full w-full hidden sm:block" />
+          <WelcomeComponent className="h-full w-full hidden sm:block" />
           <div className="w-full h-full bg-black flex flex-col justify-between sm:hidden">
             <LogoBig className={cn("px-4 w-full bg-white", styles.logoM)} />
-            <Welcome className={cn("px-11 w-full bg-white", styles.logoM)} />
+            <WelcomeComponent className={cn("px-11 w-full bg-white", styles.logoM)} />
           </div>
         </>
       )
