@@ -150,17 +150,10 @@ const Footer = ({ isIntroOn }) => {
 
   return (
     <>
-      <CSSTransition
-        in={success}
-        className="hidden sm:block"
-        classNames="fade"
-        timeout={200}
-        mountOnEnter
-        unmountOnExit
-      >
+      <CSSTransition in={success} classNames="fade" timeout={200} mountOnEnter unmountOnExit>
         <div
           className={cn(
-            "bg-purple fixed left-0 w-screen text-white text-center text-xxxl-D flex justify-center items-center z-30",
+            "hidden sm:flex bg-purple fixed left-0 w-screen text-white text-center text-xxxl-D justify-center items-center z-30",
             styles.successMessage
           )}
         >
