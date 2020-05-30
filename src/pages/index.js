@@ -51,7 +51,9 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
       />
       <Team team={pageData.team} />
       <Contacts contacts={pageData.contacts} contactsMobile={pageData.contactsMobile} />
-      <Markdown className="mt-30 mb-13">{pageData.credits}</Markdown>
+      <div className="flex justify-center text-center text-xs text-ml-D">
+        <Markdown className="mt-15 sm:mt-30 mb-30 sm:mb-13">{pageData.credits.credits}</Markdown>
+      </div>
     </Layout>
   )
 }
@@ -61,6 +63,9 @@ export const query = graphql`
     contentfulPage(title: { eq: "MAIN" }, node_locale: { eq: $locale }) {
       headerText
       title
+      credits {
+        credits
+      }
       gallery {
         title
         description {
