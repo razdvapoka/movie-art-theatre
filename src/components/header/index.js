@@ -103,7 +103,7 @@ const Menu = ({ intl, setIsMenuOpen }) => {
   )
 }
 
-const Header = ({ setIsSpread, text, isIntroOn }) => {
+const Header = ({ setIsSpread, text, isIntroOn, windowHeight }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const intl = useIntl()
   const ref = useRef(null)
@@ -130,6 +130,11 @@ const Header = ({ setIsSpread, text, isIntroOn }) => {
         styles.header,
         isIntroOn ? styles.headerBlack : styles.headerOk
       )}
+      {...(isIntroOn
+        ? {
+            style: { height: `calc(120 / 666 * ${windowHeight}px)` },
+          }
+        : {})}
     >
       <div
         ref={ref}

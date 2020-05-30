@@ -15,7 +15,7 @@ const wait = ms =>
     setTimeout(resolve, ms)
   })
 
-const Intro = ({ setIsIntroOn }) => {
+const Intro = ({ setIsIntroOn, windowHeight }) => {
   const intl = useIntl()
   const WelcomeComponent = intl.locale === "en" ? WelcomeEn : Welcome
 
@@ -35,37 +35,61 @@ const Intro = ({ setIsIntroOn }) => {
     },
     [setCurrentView, setIsIntroOn]
   )
-  const getView = useCallback(() => {
-    if (currentView === 0) {
-      return <One className={cn("h-full", styles.logoP)} />
-    } else if (currentView === 1) {
-      return <Two className={cn("h-full", styles.logoP)} />
-    } else if (currentView === 2) {
-      return <Three className={cn("h-full", styles.logoP)} />
-    } else if (currentView === 3) {
-      return (
-        <div className="px-4 w-full">
-          <LogoBig className="h-full w-full" />
-        </div>
-      )
-    } else if (currentView === 4) {
-      return (
-        <>
-          <WelcomeComponent className="h-full w-full hidden sm:block" />
-          <div className="w-full h-full bg-black flex flex-col justify-between sm:hidden">
-            <LogoBig className={cn("px-4 w-full bg-white", styles.logoM)} />
-            <WelcomeComponent className={cn("px-11 w-full bg-white", styles.logoM)} />
+  const getView = useCallback(
+    ({ windowHeight }) => {
+      const logoHeight = `calc((150 / 666) * ${windowHeight}px)`
+      if (currentView === 0) {
+        return <One className={cn("h-full", styles.logoP)} />
+      } else if (currentView === 1) {
+        return <Two className={cn("h-full", styles.logoP)} />
+      } else if (currentView === 2) {
+        return <Three className={cn("h-full", styles.logoP)} />
+      } else if (currentView === 3) {
+        return (
+          <div className="px-4 w-full">
+            <LogoBig className="h-full w-full" />
           </div>
-        </>
-      )
-    }
-  }, [currentView])
+        )
+      } else if (currentView === 4) {
+        return (
+          <>
+            <WelcomeComponent className="h-full w-full hidden sm:block" />
+            <div className="w-full h-full bg-black flex flex-col justify-between sm:hidden">
+              <LogoBig
+                className={cn("px-4 w-full bg-white", styles.logoM)}
+                style={{ height: logoHeight }}
+              />
+              <WelcomeComponent
+                className={cn("px-11 w-full bg-white", styles.logoM)}
+                style={{ height: logoHeight }}
+              />
+            </div>
+          </>
+        )
+      }
+    },
+    [currentView]
+  )
+
   useEffect(() => {
     updateView()
-  }, [updateView])
+  }, [])
+
+  const padding = `calc((120 / 666) * ${windowHeight}px)`
+
   return (
-    <div className={cn("fixed bg-white left-0 w-screen text-center z-50", styles.intro)}>
-      <div className="h-full flex justify-center">{getView()}</div>
+    <div
+      className={cn(
+        "fixed left-0 w-screen text-center z-50",
+        styles.intro,
+        windowHeight ? "bg-white" : "bg-black"
+      )}
+      style={{
+        top: padding,
+        bottom: padding,
+      }}
+    >
+      <div className="h-full flex justify-center">{getView({ windowHeight })}</div>
     </div>
   )
 }

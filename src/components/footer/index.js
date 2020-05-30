@@ -72,7 +72,7 @@ const Form = ({
   )
 }
 
-const Footer = ({ isIntroOn }) => {
+const Footer = ({ isIntroOn, windowHeight }) => {
   const intl = useIntl()
   const [email, setEmail] = useState("")
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -175,6 +175,11 @@ const Footer = ({ isIntroOn }) => {
           styles.footer,
           isIntroOn ? styles.footerBlack : styles.footerOk
         )}
+        {...(isIntroOn
+          ? {
+              style: { height: `calc(120 / 666 * ${windowHeight}px)` },
+            }
+          : {})}
       >
         <div
           className={cn(

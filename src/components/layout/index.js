@@ -21,6 +21,20 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
     require("smoothscroll-polyfill").polyfill()
   }, [])
 
+  const [windowHeight, setWindowHeight] = useState(null)
+  const updateWindowHeight = () => {
+    setWindowHeight(window.innerHeight)
+  }
+
+  useEffect(() => {
+    updateWindowHeight()
+    window.addEventListener("resize", updateWindowHeight)
+    //updateView()
+    return () => {
+      window.removeEventListener("resize", updateWindowHeight)
+    }
+  }, [])
+
   useEffect(() => {
     const spread = () => {
       if (window.scrollY <= 0) {
@@ -53,8 +67,9 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
         isMenuOpen={isMenuOpen}
         text={headerText}
         setIsSpread={setIsSpread}
+        windowHeight={windowHeight}
       />
-      {isIntroOn && <Intro setIsIntroOn={setIsIntroOn} />}
+      {isIntroOn && <Intro setIsIntroOn={setIsIntroOn} windowHeight={windowHeight} />}
       {!isIntroOn && (
         <BigMenu
           team={team}
@@ -74,7 +89,7 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
       </main>
       <ClientOnly>
         <FixedBottom>
-          <Footer isIntroOn={isIntroOn} />
+          <Footer isIntroOn={isIntroOn} windowHeight={windowHeight} />
         </FixedBottom>
       </ClientOnly>
     </div>
