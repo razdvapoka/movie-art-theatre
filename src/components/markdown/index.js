@@ -19,6 +19,7 @@ const renderers = ({ referenceId, setReferenceId, setIsReferenceVisible }) => ({
         }
     return (
       <Component
+        className="text-purple"
         {...props}
         onClick={() => {
           if (title && setReferenceId && setIsReferenceVisible) {

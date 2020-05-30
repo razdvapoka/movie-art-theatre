@@ -58,7 +58,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
 
 export const query = graphql`
   query MainPage($locale: String) {
-    contentfulPage(title: { eq: "main" }, node_locale: { eq: $locale }) {
+    contentfulPage(title: { eq: "MAIN" }, node_locale: { eq: $locale }) {
       headerText
       title
       gallery {
