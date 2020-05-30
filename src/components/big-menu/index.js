@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Img from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
 import cn from "classnames"
@@ -41,8 +41,27 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
     }
   `)
 
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
+  const [rowHeight, setRowHeight] = useState(null)
   const [hoveredSection, setHoveredSection] = useState(null)
   const intl = useIntl()
+
+  const updateRowHeight = () => {
+    const newRowHeight = `(${window.innerHeight}px - 6.1538rem) / 4`
+    const newRowHeightSpread = `(${window.innerHeight}px - 6.1538rem) / 4`
+    setRowHeight(newRowHeight)
+  }
+
+  useEffect(() => {
+    updateRowHeight()
+    window.addEventListener("resize", updateRowHeight)
+    if (!isMenuVisible) {
+      wait(300).then(() => setIsMenuVisible(true))
+    }
+    return () => {
+      window.removeEventListener("resize", updateRowHeight)
+    }
+  }, [])
 
   const handleClick = section => {
     setHoveredSection(null)
@@ -204,8 +223,11 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
         </div>
         <div className={cn("absolute top-0 bg-purple", styles.sep, styles.sepRight)} />
       </div>
-      <div className={cn("sm:hidden px-4", styles.menuMobile)}>
-        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+      <div className={cn("sm:hidden px-4", styles.menuMobile, { "opacity-0": !isMenuVisible })}>
+        <div
+          className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}
+          style={{ height: isSpread ? `calc(${rowHeight} / 3)` : `calc(${rowHeight})` }}
+        >
           <div
             className={cn(styles.iconBox, styles.iconBoxM, styles.iconGalleryM, {
               [styles.iconBoxSpread]: isSpread,
@@ -220,7 +242,10 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
         <div className="relative">
           <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
         </div>
-        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+        <div
+          className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}
+          style={{ height: isSpread ? `calc(${rowHeight} / 3)` : `calc(${rowHeight})` }}
+        >
           <div
             className={cn(
               styles.iconBox,
@@ -240,7 +265,10 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
         <div className="relative">
           <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
         </div>
-        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+        <div
+          className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}
+          style={{ height: isSpread ? `calc(${rowHeight} / 3)` : `calc(${rowHeight})` }}
+        >
           <div
             className={cn(styles.iconBox, styles.iconBoxM, styles.iconTeamM, {
               [styles.iconBoxSpread]: isSpread,
@@ -252,13 +280,19 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
         <div className="relative">
           <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
         </div>
-        <div className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}>
+        <div
+          className={cn("", styles.rowM, { [styles.rowMSpread]: isSpread })}
+          style={{ height: isSpread ? `calc(${rowHeight} / 3)` : `calc(${rowHeight})` }}
+        >
           <div
             className={cn(styles.iconBox, styles.iconContactsM, {
               [styles.iconBoxSpread]: isSpread,
             })}
           >
-            <ContactsIconComponent onClick={() => handleClick("contacts")} className="h-full" />
+            <ContactsIconComponent
+              onClick={() => handleClick("contacts")}
+              className="w-full h-full"
+            />
           </div>
         </div>
       </div>
