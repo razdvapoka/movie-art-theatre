@@ -3,10 +3,15 @@ import Section from "../section"
 import styles from "./index.module.styl"
 import cn from "classnames"
 
-const TeamMember = ({ role, name, image }) => (
+const TeamMember = ({ url, role, name, image }) => (
   <div className={cn("flex flex-col items-center text-center", styles.teamMember)}>
     <img className={cn(styles.teamMemberImage, "rounded-full")} src={image.fixed.src} alt="" />
-    <div className="text-mk mt-4 sm:mt-17 text-l-D px-4 sm:px-10">{name}</div>
+    <a
+      href={url}
+      className={("block text-mk mt-4 sm:mt-17 text-l-D px-4 sm:px-10", styles.teamMemberName)}
+    >
+      {name}
+    </a>
     <hr className={cn("my-4 sm:my-5 border-black border-t sm:border-t-2", styles.teamMemberSep)} />
     <div className="text-xs text-ml-D">{role}</div>
   </div>

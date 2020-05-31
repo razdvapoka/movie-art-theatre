@@ -81,6 +81,7 @@ export const query = graphql`
         id
         name
         role
+        url
         image {
           fixed(width: 360, height: 360) {
             src
