@@ -17,8 +17,8 @@ const TeamMember = ({ url, role, name, image }) => (
   </div>
 )
 
-const Team = ({ team }) => (
-  <Section titleId="team">
+const Team = ({ updateIntersection, team }) => (
+  <Section updateIntersection={updateIntersection} titleId="team">
     <div className="flex flex-col items-center sm:items-start sm:flex-row sm:justify-around pb-8 sm:pb-30 mt-8 sm:mt-13">
       {team.map((teamMember, id) => (
         <TeamMember key={id} {...teamMember} />

@@ -14,7 +14,15 @@ import ClientOnly from "../client-only"
 import Footer from "../footer"
 import Intro from "../intro"
 
-const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryImage }) => {
+const Layout = ({
+  currentSection,
+  isMenuOpen,
+  toggleMenu,
+  children,
+  headerText,
+  team,
+  galleryImage,
+}) => {
   const [isIntroOn, setIsIntroOn] = useState(true)
   const [isSpread, setIsSpread] = useState(false)
   useEffect(() => {
@@ -76,6 +84,7 @@ const Layout = ({ isMenuOpen, toggleMenu, children, headerText, team, galleryIma
           galleryImage={galleryImage}
           isSpread={isSpread}
           setIsSpread={setIsSpread}
+          currentSection={currentSection}
         />
       )}
       <main

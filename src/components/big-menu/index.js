@@ -28,7 +28,7 @@ const Team = ({ items }) => {
   )
 }
 
-const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) => {
+const BigMenu = ({ currentSection, galleryImage, team, contactsImage, isSpread, setIsSpread }) => {
   const data = useStaticQuery(graphql`
     query {
       contactsImage: file(relativePath: { eq: "contacts-image.jpg" }) {
@@ -125,6 +125,17 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
             />
           </div>
           <CSSTransition
+            in={currentSection && isSpread && currentSection.key === "gallery"}
+            classNames="fade"
+            timeout={200}
+            mountOnEnter
+            unmountOnExit
+          >
+            <div
+              className={cn("hidden sm:block absolute top-0 bg-purple rounded-full", styles.circle)}
+            />
+          </CSSTransition>
+          <CSSTransition
             in={hoveredSection === "gallery"}
             classNames="fade"
             timeout={200}
@@ -153,6 +164,20 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
               className="w-full h-full"
             />
           </div>
+          <CSSTransition
+            in={currentSection && isSpread && currentSection.key === "history"}
+            classNames="fade"
+            timeout={200}
+            mountOnEnter
+            unmountOnExit
+          >
+            <div
+              className={cn(
+                "hidden sm:block absolute bottom-0 bg-purple rounded-full",
+                styles.circle
+              )}
+            />
+          </CSSTransition>
           <CSSTransition
             in={hoveredSection === "history"}
             classNames="fade"
@@ -191,6 +216,17 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
           >
             <Team items={team} className="" />
           </CSSTransition>
+          <CSSTransition
+            in={currentSection && isSpread && currentSection.key === "team"}
+            classNames="fade"
+            timeout={200}
+            mountOnEnter
+            unmountOnExit
+          >
+            <div
+              className={cn("hidden sm:block absolute top-0 bg-purple rounded-full", styles.circle)}
+            />
+          </CSSTransition>
         </div>
         <div className="relative">
           <hr className={cn("absolute bg-purple w-full top-0", styles.sepH)} />
@@ -209,6 +245,20 @@ const BigMenu = ({ galleryImage, team, contactsImage, isSpread, setIsSpread }) =
               className="w-full h-full"
             />
           </div>
+          <CSSTransition
+            in={currentSection && isSpread && currentSection.key === "contacts"}
+            classNames="fade"
+            timeout={200}
+            mountOnEnter
+            unmountOnExit
+          >
+            <div
+              className={cn(
+                "hidden sm:block absolute bottom-0 bg-purple rounded-full",
+                styles.circle
+              )}
+            />
+          </CSSTransition>
           <CSSTransition
             in={hoveredSection === "contacts"}
             classNames="fade"

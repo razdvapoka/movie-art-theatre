@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import React, { useMemo, useCallback, useState } from "react"
+import React, { useEffect, useRef, useMemo, useCallback, useState } from "react"
 
 import Contacts from "@/components/contacts-section"
 import Gallery from "@/components/gallery-section"
@@ -10,10 +10,19 @@ import Team from "@/components/team-section"
 
 import Markdown from "../components/markdown"
 
+const max = obj =>
+  Object.keys(obj).reduce((max, key) => {
+    return max == null || obj[key] > max.maxItem.value ? { maxItem: { value: obj[key], key } } : max
+  }, null)
+
+const o = { gallery: 0.8017301847089081, history: 0, team: 0, contacts: 0 }
+
 const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [referenceId, setReferenceId] = useState(null)
   const [isReferenceVisible, setIsReferenceVisible] = useState(false)
+  const [intersections, setIntersections] = useState({})
+  const [currentSection, setCurrentSection] = useState(null)
 
   const references = useMemo(
     () =>
@@ -31,6 +40,20 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
     setIsMenuOpen(!isMenuOpen)
   }, [isMenuOpen, setIsMenuOpen])
 
+  const updateIntersection = (id, intersection) => {
+    setIntersections(intersections => ({
+      ...intersections,
+      [id]: intersection ? intersection.intersectionRatio : 0,
+    }))
+  }
+
+  useEffect(() => {
+    const maxIntersection = max(intersections)
+    if (maxIntersection) {
+      setCurrentSection(maxIntersection.maxItem)
+    }
+  }, [intersections])
+
   return (
     <Layout
       toggleMenu={toggleMenu}
@@ -38,10 +61,12 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
       headerText={pageData.headerText}
       galleryImage={pageData.gallery[0].asset}
       team={pageData.team}
+      currentSection={currentSection}
     >
       <SEO title="художественный" />
-      <Gallery gallery={pageData.gallery} />
+      <Gallery updateIntersection={updateIntersection} gallery={pageData.gallery} />
       <History
+        updateIntersection={updateIntersection}
         referenceId={referenceId}
         setReferenceId={setReferenceId}
         isReferenceVisible={isReferenceVisible}
@@ -49,8 +74,12 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
         history={pageData.history}
         references={references}
       />
-      <Team team={pageData.team} />
-      <Contacts contacts={pageData.contacts} contactsMobile={pageData.contactsMobile} />
+      <Team updateIntersection={updateIntersection} team={pageData.team} />
+      <Contacts
+        updateIntersection={updateIntersection}
+        contacts={pageData.contacts}
+        contactsMobile={pageData.contactsMobile}
+      />
       <div className="flex justify-center text-center text-xs text-ml-D">
         <Markdown className="mt-15 sm:mt-30 mb-30 sm:mb-13">{pageData.credits.credits}</Markdown>
       </div>

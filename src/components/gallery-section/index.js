@@ -9,7 +9,7 @@ import cn from "classnames"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 import { useSwipeable } from "react-swipeable"
 
-const Gallery = ({ gallery }) => {
+const Gallery = ({ gallery, updateIntersection }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentItem = gallery[currentIndex]
   const swipeHandlers = useSwipeable({
@@ -24,7 +24,7 @@ const Gallery = ({ gallery }) => {
     setCurrentIndex(index => (index < gallery.length - 1 ? currentIndex + 1 : currentIndex))
   }
   return (
-    <Section titleId="gallery">
+    <Section updateIntersection={updateIntersection} titleId="gallery">
       <div className="flex flex-col sm:flex-row sm:px-4 mt-4 sm:mt-12 mb-16 sm:mb-22">
         <div className="hidden sm:block sm:w-1/8"></div>
         <div className={cn("sm:w-3/4", styles.itemImage)} {...swipeHandlers} onClick={handleClick}>

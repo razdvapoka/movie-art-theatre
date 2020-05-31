@@ -48,10 +48,11 @@ const History = ({
   setReferenceId,
   isReferenceVisible,
   setIsReferenceVisible,
+  updateIntersection,
 }) => {
   const reference = references[referenceId]
   return (
-    <Section titleId="history">
+    <Section updateIntersection={updateIntersection} titleId="history">
       <div className="flex pb-8 sm:pb-28 mt-4 sm:mt-11">
         <div className="w-1/2 hidden sm:flex justify-center">
           <CSSTransition

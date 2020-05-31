@@ -51,8 +51,8 @@ const ConnectedMap = () => {
   )
 }
 
-const Contacts = ({ contacts, contactsMobile }) => (
-  <Section titleId="contacts">
+const Contacts = ({ contacts, contactsMobile, updateIntersection }) => (
+  <Section titleId="contacts" updateIntersection={updateIntersection}>
     <div className="mt-11">
       <Markdown
         className={cn("hidden sm:block text-center text-xs text-ml-D", styles.contactsText)}
