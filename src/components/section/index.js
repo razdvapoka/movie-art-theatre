@@ -1,12 +1,21 @@
-import { FormattedMessage } from "gatsby-plugin-intl"
 import { useIntersection } from "react-use"
 import React, { useRef, useEffect } from "react"
 import cn from "classnames"
+
+import { FormattedMessage } from "gatsby-plugin-intl"
+
+import { sequence } from "../../utils"
 import styles from "./index.module.styl"
+
+const thresholds = sequence(99).map(i => (i + 1) / 100)
 
 const Section = ({ titleId, children, updateIntersection, ...rest }) => {
   const intersectionRef = useRef(null)
-  const intersection = useIntersection(intersectionRef, { root: null, rootMargin: "0px" })
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: thresholds,
+  })
   useEffect(() => {
     updateIntersection(titleId, intersection)
   }, [intersection])

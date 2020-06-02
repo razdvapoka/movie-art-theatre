@@ -41,10 +41,12 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   }, [isMenuOpen, setIsMenuOpen])
 
   const updateIntersection = (id, intersection) => {
-    setIntersections(intersections => ({
-      ...intersections,
-      [id]: intersection ? intersection.intersectionRatio : 0,
-    }))
+    setIntersections(intersections => {
+      return {
+        ...intersections,
+        [id]: intersection ? intersection.intersectionRatio : 0,
+      }
+    })
   }
 
   useEffect(() => {
