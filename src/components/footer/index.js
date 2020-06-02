@@ -74,10 +74,12 @@ const Form = ({
 
 const Footer = ({ isIntroOn, windowHeight }) => {
   const intl = useIntl()
+  const ref = useRef(null)
   const [email, setEmail] = useState("")
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isEmailValid, setIsEmailValid] = useState(false)
   const [status, setStatus] = useState(null)
+  const [isFixedSuccess, setIsFixedSuccess] = useState(false)
 
   const handleEmailChange = useCallback(
     e => {
@@ -106,6 +108,14 @@ const Footer = ({ isIntroOn, windowHeight }) => {
           if (!err) {
             const { result } = data
             setStatus(result)
+            if (result === "success") {
+              setIsFixedSuccess(true)
+              disableBodyScroll(ref.current)
+              setTimeout(() => {
+                setIsFixedSuccess(false)
+                enableBodyScroll(ref.current)
+              }, 3000)
+            }
           } else {
             setStatus("error")
           }
@@ -128,13 +138,13 @@ const Footer = ({ isIntroOn, windowHeight }) => {
   }
 
   const reset = useCallback(() => {
-    if (status === "success") {
+    if (status === "success" && !isFixedSuccess) {
       setStatus(null)
       setEmail("")
       setIsEmailValid(false)
       setIsFormOpen(false)
     }
-  }, [setStatus, status, setEmail, setIsEmailValid, setIsFormOpen])
+  }, [setStatus, status, setEmail, setIsEmailValid, setIsFormOpen, isFixedSuccess])
 
   useEffect(() => {
     window.addEventListener("scroll", reset)
@@ -152,6 +162,7 @@ const Footer = ({ isIntroOn, windowHeight }) => {
     <>
       <CSSTransition in={success} classNames="fade" timeout={200} mountOnEnter unmountOnExit>
         <div
+          ref={ref}
           className={cn(
             "hidden sm:flex bg-purple fixed left-0 w-screen text-white text-center text-xxxl-D justify-center items-center z-30",
             styles.successMessage
