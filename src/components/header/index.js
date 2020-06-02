@@ -9,6 +9,7 @@ import FB from "@/icons/fb.inline.svg"
 import IG from "@/icons/ig.inline.svg"
 import LangSwitcher from "@/components/lang-switcher"
 import Logo from "@/icons/logo-2.inline.svg"
+import LogoEn from "@/icons/logo-en.inline.svg"
 import VK from "@/icons/vk.inline.svg"
 
 import { blank } from "../../utils"
@@ -121,6 +122,9 @@ const Header = ({ setIsSpread, text, isIntroOn, windowHeight }) => {
     }
   }, [isMenuOpen, ref])
 
+  const LogoComponent = intl.locale === "en" ? LogoEn : Logo
+  const logoClassName = intl.locale === "en" ? styles.headerLogoEn : styles.headerLogo
+
   return (
     <header
       className={cn(
@@ -162,7 +166,10 @@ const Header = ({ setIsSpread, text, isIntroOn, windowHeight }) => {
         )}
       >
         <div className="opacity-50 hidden sm:block">{text}</div>
-        <Logo onClick={() => setIsSpread(false)} className={cn("absolute", styles.headerLogo)} />
+        <LogoComponent
+          onClick={() => setIsSpread(false)}
+          className={cn("absolute", logoClassName)}
+        />
         <div className="">
           <LangSwitcher className="hidden sm:block opacity-50" />
           {isMenuOpen ? (

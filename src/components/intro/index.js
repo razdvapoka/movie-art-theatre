@@ -20,6 +20,8 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
   const intl = useIntl()
   const WelcomeComponent = intl.locale === "en" ? WelcomeEn : Welcome
 
+  const LogoComponent = intl.locale === "en" ? LogoBigEn : LogoBig
+
   const [currentView, setCurrentView] = useState(0)
   const updateView = useCallback(
     (view = -1) => {
@@ -48,7 +50,7 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
       } else if (currentView === 3) {
         return (
           <div className="px-4 w-full">
-            <LogoBig className="h-full w-full" />
+            <LogoComponent className="text-black h-full w-full" />
           </div>
         )
       } else if (currentView === 4) {
@@ -56,7 +58,7 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
           <>
             <WelcomeComponent className="h-full w-full hidden sm:block" />
             <div className="w-full h-full bg-black flex flex-col justify-between sm:hidden">
-              <LogoBig
+              <LogoComponent
                 className={cn("px-4 w-full bg-white", styles.logoM)}
                 style={{ height: logoHeight }}
               />

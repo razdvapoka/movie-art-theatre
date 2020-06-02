@@ -2,12 +2,14 @@ import React, { useState, useCallback } from "react"
 import cn from "classnames"
 import { YMaps, Map, Placemark, withYMaps } from "react-yandex-maps"
 import hint from "./hint"
+import hintEn from "./hint-en"
+import { useIntl } from "gatsby-plugin-intl"
 
 import Markdown from "../markdown"
 import Section from "../section"
 import styles from "./index.module.styl"
 
-const ConnectedMap = () => {
+const ConnectedMap = ({ intl }) => {
   const [template, setTemplate] = useState(null)
   const handleMapLoad = useCallback(
     ymaps => {
@@ -19,7 +21,7 @@ const ConnectedMap = () => {
           left: 50%; top: 50%;
           transform: translate(-50%, -120%);
           "
-        >${hint}</div>`
+        >${intl.locale === "en" ? hintEn : hint}</div>`
       )
       setTemplate({ template: t })
     },
@@ -51,26 +53,29 @@ const ConnectedMap = () => {
   )
 }
 
-const Contacts = ({ contacts, contactsMobile, updateIntersection }) => (
-  <Section titleId="contacts" updateIntersection={updateIntersection}>
-    <div className="mt-11">
-      <Markdown
-        className={cn("hidden sm:block text-center text-xs text-ml-D", styles.contactsText)}
-      >
-        {contacts.contacts}
-      </Markdown>
-      <Markdown className={cn("sm:hidden text-center text-xs text-ml-D", styles.contactsText)}>
-        {contactsMobile.contactsMobile}
-      </Markdown>
-      <div className="mt-8 sm:mt-18">
-        <div className={cn(styles.contactsMapBox, "bg-grey")}>
-          <YMaps>
-            <ConnectedMap />
-          </YMaps>
+const Contacts = ({ contacts, contactsMobile, updateIntersection }) => {
+  const intl = useIntl()
+  return (
+    <Section titleId="contacts" updateIntersection={updateIntersection}>
+      <div className="mt-11">
+        <Markdown
+          className={cn("hidden sm:block text-center text-xs text-ml-D", styles.contactsText)}
+        >
+          {contacts.contacts}
+        </Markdown>
+        <Markdown className={cn("sm:hidden text-center text-xs text-ml-D", styles.contactsText)}>
+          {contactsMobile.contactsMobile}
+        </Markdown>
+        <div className="mt-8 sm:mt-18">
+          <div className={cn(styles.contactsMapBox, "bg-grey")}>
+            <YMaps>
+              <ConnectedMap intl={intl} />
+            </YMaps>
+          </div>
         </div>
       </div>
-    </div>
-  </Section>
-)
+    </Section>
+  )
+}
 
 export default Contacts

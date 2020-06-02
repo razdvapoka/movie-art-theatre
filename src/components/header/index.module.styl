@@ -3,14 +3,23 @@ $td = 0.7s
 .header
   transition: height $td ease
   &Logo
-    width: pxToRem(155)
-    height: pxToRem(40)
+  &LogoEn
     left: 50%
     top: 50%
     transform: translate(-50%, -50%)
+  &Logo
+    width: pxToRem(155)
+    height: pxToRem(40)
     +desktop()
       width: pxToRem(206)
       height: pxToRem(52)
+  &LogoEn
+    width: pxToRem(190)
+    height: pxToRem(40)
+    +desktop()
+      width: pxToRem(247)
+      height: pxToRem(52)
+      margin-left: pxToRem(-10)
   &Content
     height: pxToRem(80)
     +desktop()
