@@ -8,7 +8,7 @@ const TeamMember = ({ url, role, name, image }) => (
     <img className={cn(styles.teamMemberImage, "rounded-full")} src={image.fixed.src} alt="" />
     <a
       href={url}
-      className={("block text-mk mt-4 sm:mt-17 text-l-D px-4 sm:px-10", styles.teamMemberName)}
+      className={cn("block text-mk mt-4 sm:mt-17 text-l-D px-4 sm:px-10", styles.teamMemberName)}
     >
       {name}
     </a>

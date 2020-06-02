@@ -39,11 +39,11 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
     ({ windowHeight }) => {
       const logoHeight = `calc((150 / 666) * ${windowHeight}px)`
       if (currentView === 0) {
-        return <One className={cn("h-full", styles.logoP)} />
+        return <Three className={cn("h-full", styles.logoP)} />
       } else if (currentView === 1) {
         return <Two className={cn("h-full", styles.logoP)} />
       } else if (currentView === 2) {
-        return <Three className={cn("h-full", styles.logoP)} />
+        return <One className={cn("h-full", styles.logoP)} />
       } else if (currentView === 3) {
         return (
           <div className="px-4 w-full">
