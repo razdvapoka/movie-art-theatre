@@ -14,8 +14,8 @@ import { blank } from "../../utils"
 import styles from "./index.module.styl"
 
 const MAILCHIMP_URL =
-  "https://dev.us18.list-manage.com/subscribe/post-json?u=cbce4c710a25008dbbcaf1c90&amp;id=3e0afba3c2"
-const MAILCHIMP_SECRET = "b_cbce4c710a25008dbbcaf1c90_3e0afba3c2"
+  "https://cinema1909.us10.list-manage.com/subscribe/post-json?u=76d9bac7ec90e3d9f31d4eba4&amp;id=99c82c4be8"
+const MAILCHIMP_SECRET = "b_76d9bac7ec90e3d9f31d4eba4_99c82c4be8"
 const EMAIL_REGEX = /.+@.+\..+/
 
 const Form = ({
