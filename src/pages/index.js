@@ -83,7 +83,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
         contactsMobile={pageData.contactsMobile}
       />
       <div className="flex justify-center text-center text-xs text-xs-D">
-        <Markdown className="mt-15 sm:mt-30 mb-30 sm:mb-13">{pageData.credits.credits}</Markdown>
+        <div className="mt-15 sm:mt-30 mb-30 sm:mb-13" />
       </div>
     </Layout>
   )
