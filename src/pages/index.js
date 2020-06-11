@@ -24,6 +24,17 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
   const [intersections, setIntersections] = useState({})
   const [currentSection, setCurrentSection] = useState(null)
 
+  useEffect(() => {
+    console.log(
+      "%c This site was designed by Electric Red studio (https://electricred.design)",
+      "background: rgb(47,60,73); color: white;"
+    )
+    console.log(
+      "%c and developed by Sergey Zakharov (https://sergeyzakharov.dev)",
+      "background: rgb(47,60,73); color: white;"
+    )
+  }, [])
+
   const references = useMemo(
     () =>
       pageData.references.reduce(
