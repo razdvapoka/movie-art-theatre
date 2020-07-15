@@ -8,8 +8,10 @@ import toQueryString from "to-querystring"
 import { useIntl } from "gatsby-plugin-intl"
 import FB from "@/icons/fb.inline.svg"
 import IG from "@/icons/ig.inline.svg"
+import TG from "@/icons/tg.inline.svg"
 import VK from "@/icons/vk.inline.svg"
 
+import { FB_URL, IG_URL, TG_URL, VK_URL } from "../../consts"
 import { blank } from "../../utils"
 import styles from "./index.module.styl"
 
@@ -232,22 +234,17 @@ const Footer = ({ isIntroOn, windowHeight }) => {
             </div>
           </form>
           <div className="flex items-center text-white hidden sm:flex">
-            <a className={"opacity-50 hover:opacity-100"} href="https://example.com" {...blank()}>
+            <a className={"opacity-50 hover:opacity-100"} href={IG_URL} {...blank()}>
               <IG className={styles.igLogo} />
             </a>
-            <a
-              className={"ml-8 opacity-50 hover:opacity-100"}
-              href="https://example.com"
-              {...blank()}
-            >
+            <a className={"ml-8 opacity-50 hover:opacity-100"} href={FB_URL} {...blank()}>
               <FB className={styles.fbLogo} />
             </a>
-            <a
-              className={"ml-8 opacity-50 hover:opacity-100"}
-              href="https://example.com"
-              {...blank()}
-            >
+            <a className={"ml-8 opacity-50 hover:opacity-100"} href={VK_URL} {...blank()}>
               <VK className={styles.vkLogo} />
+            </a>
+            <a className={"ml-8 opacity-50 hover:opacity-100"} href={TG_URL} {...blank()}>
+              <TG className={styles.tgLogo} />
             </a>
           </div>
           <button className="sm:hidden text-mk text-white" onClick={handleSubscribeClick}>

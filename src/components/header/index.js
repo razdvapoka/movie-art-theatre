@@ -11,6 +11,8 @@ import LangSwitcher from "@/components/lang-switcher"
 import Logo from "@/icons/logo-2.inline.svg"
 import LogoEn from "@/icons/logo-en.inline.svg"
 import VK from "@/icons/vk.inline.svg"
+import TG from "@/icons/tg.inline.svg"
+import { FB_URL, IG_URL, VK_URL, TG_URL } from "@/consts"
 
 import { blank } from "../../utils"
 import styles from "./index.module.styl"
@@ -77,27 +79,35 @@ const Menu = ({ intl, setIsMenuOpen }) => {
         )}
       >
         <a
-          className={"flex items-center justify-center w-1/3 h-full opacity-50"}
-          href="https://example.com"
+          className={"flex items-center justify-center w-1/4 h-full opacity-50"}
+          href={IG_URL}
           {...blank()}
         >
           <IG className={styles.igLogo} />
         </a>
         <div className={cn(styles.sep, "bg-white h-full")} />
         <a
-          className={"flex items-center justify-center w-1/3 h-full opacity-50"}
-          href="https://example.com"
+          className={"flex items-center justify-center w-1/4 h-full opacity-50"}
+          href={FB_URL}
           {...blank()}
         >
           <FB className={styles.fbLogo} />
         </a>
         <div className={cn(styles.sep, "bg-white h-full")} />
         <a
-          className={"flex items-center justify-center w-1/3 h-full opacity-50"}
-          href="https://example.com"
+          className={"flex items-center justify-center w-1/4 h-full opacity-50"}
+          href={VK_URL}
           {...blank()}
         >
           <VK className={styles.vkLogo} />
+        </a>
+        <div className={cn(styles.sep, "bg-white h-full")} />
+        <a
+          className={"flex items-center justify-center w-1/4 h-full opacity-50"}
+          href={TG_URL}
+          {...blank()}
+        >
+          <TG className={styles.tgLogo} />
         </a>
       </div>
     </div>

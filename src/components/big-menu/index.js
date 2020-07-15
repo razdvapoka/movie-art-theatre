@@ -9,7 +9,7 @@ import RamblerLogo from "@/icons/rambler-logo.inline.svg"
 import TeamIcon from "@/icons/team.inline.svg"
 import GalleryIcon from "@/icons/gallery.inline.svg"
 import ContactsIcon from "@/icons/contacts.inline.svg"
-import HistoryIcon from "@/icons/history.inline.svg"
+import HistoryIcon from "@/icons/history-upd.inline.svg"
 import TeamIconEn from "@/icons/team-en.inline.svg"
 import GalleryIconEn from "@/icons/gallery-en.inline.svg"
 import ContactsIconEn from "@/icons/contacts-en.inline.svg"
@@ -156,8 +156,6 @@ const BigMenu = ({ currentSection, galleryImage, team, contactsImage, isSpread, 
               styles.iconBox,
               isSpread ? historyIconClassNameSpread : historyIconClassName
             )}
-            onMouseEnter={() => !isSpread && setHoveredSection("history")}
-            onMouseLeave={() => setHoveredSection(null)}
           >
             <HistoryIconComponent
               onClick={() => handleClick("history")}
@@ -177,17 +175,6 @@ const BigMenu = ({ currentSection, galleryImage, team, contactsImage, isSpread, 
                 styles.circle
               )}
             />
-          </CSSTransition>
-          <CSSTransition
-            in={hoveredSection === "history"}
-            classNames="fade"
-            timeout={200}
-            mountOnEnter
-            unmountOnExit
-          >
-            <div className={cn("absolute bottom-0", styles.ramblerLogo)}>
-              <RamblerLogo className="w-full h-full" />
-            </div>
           </CSSTransition>
         </div>
         <div className={cn("absolute top-0 right-0 bg-purple", styles.sep, styles.sepLeft)} />
