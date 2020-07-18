@@ -79,7 +79,7 @@ const History = ({
           <Markdown
             setReferenceId={setReferenceId}
             setIsReferenceVisible={setIsReferenceVisible}
-            className="text-xs text-ml-D mb-8 sm:mb-15"
+            className="text-xs text-ml-D mb-8 sm:mb-15 sm:pr-4"
           >
             {history.history}
           </Markdown>
