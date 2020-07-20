@@ -76,7 +76,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
       team={pageData.team}
       currentSection={currentSection}
     >
-      <SEO title={`Кинотеатр «Художественный»"`} />
+      <SEO title={`Кинотеатр «Художественный»`} />
       <Gallery updateIntersection={updateIntersection} gallery={pageData.gallery} />
       <History
         updateIntersection={updateIntersection}
