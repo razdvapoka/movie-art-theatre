@@ -63,7 +63,11 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
                 style={{ height: logoHeight }}
               />
               <WelcomeComponent
-                className={cn("px-11 w-full bg-white py-4", styles.logoM)}
+                className={cn(
+                  " w-full bg-white",
+                  styles.logoM,
+                  intl.locale === "en" ? "px-31" : "px-22"
+                )}
                 style={{ height: logoHeight }}
               />
             </div>
