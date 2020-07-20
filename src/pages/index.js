@@ -1,3 +1,4 @@
+import "intersection-observer"
 import { graphql } from "gatsby"
 import React, { useEffect, useRef, useMemo, useCallback, useState } from "react"
 
