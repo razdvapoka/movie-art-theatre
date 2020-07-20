@@ -52,7 +52,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: `https://movie-art-theatre.now.sh/meta.jpg`,
+          content: `https://cinema1909.ru/meta.jpg`,
         },
         {
           name: `twitter:card`,

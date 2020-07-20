@@ -2,8 +2,8 @@ require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
-    title: `Художественный`,
-    description: `Художественный`,
+    title: `Кинотеатр «Художественный»`,
+    description: `Открытие в 2020`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
