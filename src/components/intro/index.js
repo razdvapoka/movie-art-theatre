@@ -33,10 +33,10 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
         })
       } else {
         setCurrentView(window.innerWidth < 640 && view === 2 ? 4 : view + 1)
-        setTimeout(() => updateView(view + 1), 1000)
+        setTimeout(() => updateView(view + 1), view === -1 ? 2000 : 1000)
       }
     },
-    [setCurrentView, setIsIntroOn]
+    [currentView, setCurrentView, setIsIntroOn]
   )
   const getView = useCallback(
     ({ windowHeight }) => {
@@ -63,7 +63,7 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
                 style={{ height: logoHeight }}
               />
               <WelcomeComponent
-                className={cn("px-11 w-full bg-white", styles.logoM)}
+                className={cn("px-11 w-full bg-white py-4", styles.logoM)}
                 style={{ height: logoHeight }}
               />
             </div>
