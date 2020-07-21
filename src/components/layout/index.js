@@ -77,7 +77,9 @@ const Layout = ({
         setIsSpread={setIsSpread}
         windowHeight={windowHeight}
       />
-      {isIntroOn && <Intro setIsIntroOn={setIsIntroOn} windowHeight={windowHeight} />}
+      {isIntroOn && windowHeight && (
+        <Intro setIsIntroOn={setIsIntroOn} windowHeight={windowHeight} />
+      )}
       {!isIntroOn && (
         <BigMenu
           team={team}
