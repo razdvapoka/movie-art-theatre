@@ -25,7 +25,7 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
   const [currentView, setCurrentView] = useState(0)
   const updateView = useCallback(
     (view = -1) => {
-      if (view === 4) {
+      if (view === 4 || (window.innerWidth >= 640 && view === 3)) {
         const fontA = new FontFaceObserver("CoFoKomsomolskayaBeta-Regular")
         const fontB = new FontFaceObserver("CoFoSans-Medium")
         Promise.all([fontA.load(), fontB.load(), wait(1000)]).then(() => {
@@ -62,12 +62,8 @@ const Intro = ({ setIsIntroOn, windowHeight }) => {
                 className={cn("px-4 w-full bg-white", styles.logoM)}
                 style={{ height: logoHeight }}
               />
-              <WelcomeComponent
-                className={cn(
-                  " w-full bg-white",
-                  styles.logoM,
-                  intl.locale === "en" ? "px-31" : "px-22"
-                )}
+              <LogoComponent
+                className={cn("px-4 w-full bg-white", styles.logoM)}
                 style={{ height: logoHeight }}
               />
             </div>
