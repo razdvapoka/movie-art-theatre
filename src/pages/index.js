@@ -72,7 +72,7 @@ const IndexPage = ({ data: { contentfulPage: pageData } }) => {
     <Layout
       toggleMenu={toggleMenu}
       isMenuOpen={isMenuOpen}
-      headerText={pageData.headerText}
+      headerText={""}
       galleryImage={pageData.gallery[0].asset}
       team={pageData.team}
       currentSection={currentSection}
